@@ -17,7 +17,8 @@
   "environment": "*",
   "entrypoints": {
     "antimatter": [
-      "com.github.gregtechintergalactical.gtrubber.GTRubber"
+      "com.github.gregtechintergalactical.gtrubber.GTRubber",
+      "com.github.gregtechintergalactical.gtrubber.fabric.GTRubberFabricRegistrar"
     ],
     "antimatter_client": [
       "com.github.gregtechintergalactical.gtrubber.client.fabric.GTRubberClientInitializer"
