@@ -105,6 +105,9 @@ allprojects {
         maven {
             url "https://repo.repsy.io/mvn/trinsdar/gregtech-intergalactical/"
         }
+        maven {
+            url = uri("https://storage.googleapis.com/devan-maven/")
+        }
     }
 
     java {
