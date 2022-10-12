@@ -18,6 +18,12 @@
   "entrypoints": {
     "antimatter": [
       "com.github.gregtechintergalactical.gtrubber.GTRubber"
+    ],
+    "antimatter_client": [
+      "com.github.gregtechintergalactical.gtrubber.client.fabric.GTRubberClientInitializer"
+    ],
+    "main": [
+      "com.github.gregtechintergalactical.gtrubber.fabric.GTRubberFabric"
     ]
   },
 

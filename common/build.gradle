@@ -9,6 +9,7 @@ dependencies {
     modImplementation("com.github.gregtech-intergalactical:antimatter-common:${antimatter_version}.1"){
         exclude(group: "com.github.gregtech-intergalactical")
     }
+    modCompileOnly("net.devtech:arrp:0.5.7")
 }
 
 architectury {
