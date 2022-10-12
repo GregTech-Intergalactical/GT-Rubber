@@ -1,8 +1,12 @@
 archivesBaseName = "${rootProject.archive_base_name}-common"
 version = "${rootProject.minecraft_version}-${project.mod_version}"
 
+loom {
+    accessWidenerPath = file("src/main/resources/gtrubber.accesswidener")
+}
+
 dependencies {
-    modCompileOnly("com.github.gregtech-intergalactical:antimatter-common:${antimatter_version}"){
+    modImplementation("com.github.gregtech-intergalactical:antimatter-common:${antimatter_version}.1"){
         exclude(group: "com.github.gregtech-intergalactical")
     }
 }

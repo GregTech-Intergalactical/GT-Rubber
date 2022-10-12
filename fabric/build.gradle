@@ -24,8 +24,8 @@ dependencies {
     modImplementation("com.github.gregtech-intergalactical:antimatter-forge:${antimatter_version}"){
         exclude(group: "com.github.gregtech-intergalactical")
     }
-    //modRuntimeOnly("com.github.GregTech-Intergalactical.TesseractAPI:tesseract-fabric:${tesseract_version}")
-    modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
+    modRuntimeOnly("com.github.gregtech-intergalactical:tesseract-fabric:${tesseract_version}")
+    //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
 }
 
 shadowJar {
