@@ -12,6 +12,8 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 
+import static com.github.gregtechintergalactical.gtrubber.tree.RubberTreeWorldGen.getValidBiomesStatic;
+
 public class RubberTreeFeature extends TreeFeature implements IAntimatterFeature {
 
     public RubberTreeFeature() {
@@ -31,11 +33,11 @@ public class RubberTreeFeature extends TreeFeature implements IAntimatterFeature
     @Override
     public void build(ResourceLocation name, Biome.ClimateSettings climate, Biome.BiomeCategory category, BiomeSpecialEffects effects, BiomeGenerationSettings.Builder gen, MobSpawnSettings.Builder spawns) {
         if (name.equals(Biomes.SWAMP.location())) {
-            gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTree.TREE_SWAMP);
+            gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTreeWorldGen.TREE_SWAMP);
         } else if (name.equals(Biomes.JUNGLE.location())) {
-            gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTree.TREE_JUNGLE);
+            gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTreeWorldGen.TREE_JUNGLE);
         } else {
-            gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTree.TREE);
+            gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTreeWorldGen.TREE);
         }
     }
 

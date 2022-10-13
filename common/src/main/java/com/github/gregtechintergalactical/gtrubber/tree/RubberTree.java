@@ -28,7 +28,6 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStatePr
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
 
 import java.util.Random;
@@ -37,13 +36,7 @@ public class RubberTree extends AbstractTreeGrower {
 
     public static final TreeFeature TREE_FEATURE = (TreeFeature) AntimatterAPI.register(IAntimatterFeature.class, new RubberTreeFeature()).asFeature();
     public static final WeightedStateProvider TRUNK_BLOCKS;
-    public static Holder<PlacedFeature> TREE;
-    public static Holder<PlacedFeature> TREE_SWAMP;
-    public static Holder<PlacedFeature> TREE_JUNGLE;
 
-    public static Holder<ConfiguredFeature<TreeConfiguration, ?>> TREE_FEATURE_CONFIG;
-    public static Holder<ConfiguredFeature<TreeConfiguration, ?>> TREE_FEATURE_SWAMP_CONFIG;
-    public static Holder<ConfiguredFeature<TreeConfiguration, ?>> TREE_FEATURE_JUNGLE_CONFIG;
     static {
         SimpleWeightedRandomList.Builder<BlockState> st = SimpleWeightedRandomList.<BlockState>builder();
         BlockStateProperties.HORIZONTAL_FACING.getPossibleValues().forEach(d -> {
@@ -60,17 +53,6 @@ public class RubberTree extends AbstractTreeGrower {
 }
 
     public static void init() {
-
-
-        TREE_FEATURE_CONFIG = FeatureUtils.register("gtrubber:rubber_tree_normal", TREE_FEATURE, RubberTreeWorldGen.RUBBER_TREE_CONFIG_NORMAL);
-        TREE_FEATURE_SWAMP_CONFIG = FeatureUtils.register("gtrubber:rubber_tree_jungle", TREE_FEATURE, RubberTreeWorldGen.RUBBER_TREE_CONFIG_JUNGLE);
-        TREE_FEATURE_JUNGLE_CONFIG = FeatureUtils.register("gtrubber:rubber_tree_swamp", TREE_FEATURE, RubberTreeWorldGen.RUBBER_TREE_CONFIG_SWAMP);
-        TREE = PlacementUtils.register("gtrubber:rubber",TREE_FEATURE_CONFIG, PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(0), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTRubberData.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
-        TREE_JUNGLE = PlacementUtils.register("gtrubber:rubber_jungle", TREE_FEATURE_JUNGLE_CONFIG, PlacementUtils.countExtra(5, 0.1F, 1), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(0), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTRubberData.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
-        TREE_SWAMP = PlacementUtils.register("gtrubber:rubber_swamp", TREE_FEATURE_SWAMP_CONFIG, PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(2), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTRubberData.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
-        if (AntimatterPlatformUtils.isFabric()){
-            Registry.register(Registry.FOLIAGE_PLACER_TYPES, new ResourceLocation(GTRubber.ID, "rubber_foilage_placer"), RubberFoliagePlacer.RUBBER);
-        }
     }
 
 
@@ -84,11 +66,11 @@ public class RubberTree extends AbstractTreeGrower {
         Holder<Biome> biome = world.getBiome(pos);
         ConfiguredFeature<TreeConfiguration, ?> configuredFeature;
         if (biome.is(Biomes.JUNGLE)) {
-            configuredFeature = TREE_FEATURE_JUNGLE_CONFIG.value();
+            configuredFeature = RubberTreeWorldGen.TREE_FEATURE_JUNGLE_CONFIG.value();
         } else if (biome.is(Biomes.SWAMP)) {
-            configuredFeature = TREE_FEATURE_SWAMP_CONFIG.value();
+            configuredFeature = RubberTreeWorldGen.TREE_FEATURE_SWAMP_CONFIG.value();
         } else {
-            configuredFeature = TREE_FEATURE_CONFIG.value();
+            configuredFeature = RubberTreeWorldGen.TREE_FEATURE_CONFIG.value();
         }
         world.setBlock(pos, Blocks.AIR.defaultBlockState(), 4);
         if (!configuredFeature.place(world, chunkGenerator, rand, pos)) {
@@ -102,6 +84,6 @@ public class RubberTree extends AbstractTreeGrower {
     @Override
     protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(Random rand,
             boolean b) {
-        return TREE_FEATURE_CONFIG;
+        return RubberTreeWorldGen.TREE_FEATURE_CONFIG;
     }
 }

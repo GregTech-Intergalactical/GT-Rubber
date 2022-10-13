@@ -21,6 +21,6 @@ public class GTRubberForge extends GTRubber {
     }
 
     private void onProvidersEvent(AntimatterProvidersEvent event){
-        this.onProviders(event.event);
+        onProviders(event.event);
     }
 }
