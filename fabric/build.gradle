@@ -3,13 +3,6 @@ version = "${rootProject.minecraft_version}-${project.mod_version}"
 
 apply plugin: "com.github.johnrengelman.shadow"
 
-configurations {
-    common
-    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
-    compileClasspath.extendsFrom common
-    runtimeClasspath.extendsFrom common
-    developmentFabric.extendsFrom common
-}
 
 architectury {
     platformSetupLoomIde()
@@ -28,23 +21,16 @@ dependencies {
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
 }
 
-shadowJar {
-    configurations = [project.configurations.shadowCommon]
-    classifier "dev-shadow"
-}
+processResources {
+    inputs.property "version", project.version
 
-remapJar {
-    input.set shadowJar.archiveFile
-    dependsOn shadowJar
-    classifier null
-}
-
-jar {
-    classifier "dev"
-}
-
-components.java {
-    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
-        skip()
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
     }
+}
+
+sourcesJar {
+    def commonSources = project(":common").sourcesJar
+    dependsOn commonSources
+    from commonSources.archiveFile.map { zipTree(it) }
 }

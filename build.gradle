@@ -102,6 +102,43 @@ subprojects {
     apply plugin: "dev.architectury.loom"
     java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
+    if (!project.path.contains("common")){
+        apply plugin: "com.github.johnrengelman.shadow"
+
+        configurations {
+            common
+            shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+            compileClasspath.extendsFrom common
+            runtimeClasspath.extendsFrom common
+            if (project.path.contains("forge")){
+                developmentForge.extendsFrom common
+            } else{
+                developmentFabric.extendsFrom common
+            }
+        }
+
+        shadowJar {
+            configurations = [project.configurations.shadowCommon]
+            classifier "dev-shadow"
+        }
+
+        remapJar {
+            input.set shadowJar.archiveFile
+            dependsOn shadowJar
+            classifier null
+        }
+
+        jar {
+            classifier "dev"
+        }
+
+        components.java {
+            withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+                skip()
+            }
+        }
+    }
+
     loom {
         silentMojangMappingsLicense()
     }
