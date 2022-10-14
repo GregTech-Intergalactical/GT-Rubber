@@ -92,8 +92,11 @@ allprojects {
         it.options.encoding = 'UTF-8'
     }
 
-    if (isCI && !isRELEASE) {
-        version = version + "-" + gitHash()
+    if (isCI) {
+        if (!isRELEASE){
+            version = version + "-" + gitHash()
+            println("Not in CI Release mode")
+        }
         println("In CI mode")
     }
 }
