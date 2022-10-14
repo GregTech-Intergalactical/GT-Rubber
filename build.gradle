@@ -160,6 +160,7 @@ subprojects {
     publishing {
         publications {
             mavenJava(org.gradle.api.publish.maven.MavenPublication) {
+                artifactId = archivesBaseName
                 artifact(sourcesJar) {
                     builtBy remapSourcesJar
                 }
