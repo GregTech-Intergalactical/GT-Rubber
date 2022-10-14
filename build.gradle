@@ -40,13 +40,28 @@ subprojects {
 
     publishing {
         publications {
-            mavenJava(MavenPublication) {
-                artifact jar
+            mavenJava(org.gradle.api.publish.maven.MavenPublication) {
+                artifact(sourcesJar) {
+                    builtBy remapSourcesJar
+                }
+
+                afterEvaluate {
+                    artifact remapJar
+                }
             }
         }
+
         repositories {
-            maven {
-                url "file:///${project.projectDir}/mcmodsrepo"
+            if (isCI && isRELEASE) {
+                maven {
+                    url = "https://repo.repsy.io/mvn/trinsdar/gregtech-intergalactical/"
+                    credentials {
+                        username = System.getenv("MAVEN_USERNAME")
+                        password = System.getenv("MAVEN_PASSWORD")
+                    }
+                }
+            } else {
+                maven { url "file:///${project.projectDir}/mcmodsrepo"}
             }
         }
     }
