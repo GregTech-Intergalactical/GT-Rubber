@@ -1,7 +1,10 @@
 name: Release
 on:
-  release:
-    types: [created]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (Do not include v prefix! Example: 1.4.2)'
+        required: true
 jobs:
   release:
     strategy:
