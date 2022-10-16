@@ -64,6 +64,7 @@ public class GTRubber extends AntimatterMod {
                     this.tag(BlockTags.LOGS).add(GTRubberData.RUBBER_LOG);
                     this.tag(BlockTags.LEAVES).add(GTRubberData.RUBBER_LEAVES);
                     this.tag(BlockTags.SAPLINGS).add(GTRubberData.RUBBER_SAPLING);
+                    this.tag(TagUtils.getBlockTag(new ResourceLocation("minecraft", "logs_that_burn"))).add(GTRubberData.RUBBER_LOG);
                 }
             };
             return p[0];
