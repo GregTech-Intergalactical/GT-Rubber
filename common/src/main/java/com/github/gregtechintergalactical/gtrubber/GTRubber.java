@@ -120,4 +120,9 @@ public class GTRubber extends AntimatterMod {
         event.setMaterial(GTRubberData.RUBBER).asSolid(295, 0, PLATE, RING)
                 .addHandleStat(11, 0.4F);
     }
+
+    @Override
+    public int getPriority() {
+        return 50000;
+    }
 }
