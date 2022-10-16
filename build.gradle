@@ -167,6 +167,9 @@ subprojects {
 
                 afterEvaluate {
                     artifact remapJar
+                    if (project.name != "common"){
+                        artifact shadowJar
+                    }
                 }
             }
         }

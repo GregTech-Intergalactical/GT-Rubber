@@ -1,4 +1,4 @@
-package com.github.gregtechintergalactical.forge;
+package com.github.gregtechintergalactical.gtrubber.forge;
 
 import com.github.gregtechintergalactical.gtrubber.GTRubber;
 import com.github.gregtechintergalactical.gtrubber.client.ClientHandler;
