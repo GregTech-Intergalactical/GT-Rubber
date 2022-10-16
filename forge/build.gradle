@@ -26,3 +26,12 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionForge"))
     modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
 }
+
+processResources {
+
+    inputs.property "version", project.version
+
+    filesMatching("META-INF/mods.toml") {
+        expand "version": project.version
+    }
+}
