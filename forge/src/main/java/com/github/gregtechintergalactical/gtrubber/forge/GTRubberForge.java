@@ -2,7 +2,11 @@ package com.github.gregtechintergalactical.gtrubber.forge;
 
 import com.github.gregtechintergalactical.gtrubber.GTRubber;
 import com.github.gregtechintergalactical.gtrubber.client.ClientHandler;
+import com.github.gregtechintergalactical.gtrubber.tree.RubberFoliagePlacer;
+import muramasa.antimatter.Ref;
 import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -14,6 +18,7 @@ public class GTRubberForge extends GTRubber {
         super();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onProvidersEvent);
+        FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(FoliagePlacerType.class, this::onRegistration);
     }
 
     private void clientSetup(FMLClientSetupEvent event){
@@ -22,5 +27,9 @@ public class GTRubberForge extends GTRubber {
 
     private void onProvidersEvent(AntimatterProvidersEvent event){
         onProviders(event.event);
+    }
+
+    private void onRegistration(final RegistryEvent.Register<FoliagePlacerType<?>> e){
+        e.getRegistry().register(RubberFoliagePlacer.RUBBER.setRegistryName(Ref.ID, "rubber_foilage_placer"));
     }
 }
