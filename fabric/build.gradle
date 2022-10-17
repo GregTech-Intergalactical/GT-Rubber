@@ -18,7 +18,7 @@ dependencies {
         exclude(group: "com.github.gregtech-intergalactical")
     }
     modRuntimeOnly("com.github.gregtech-intergalactical:tesseract-fabric:${tesseract_version}")
-    //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
+    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}"
 }
 
 processResources {

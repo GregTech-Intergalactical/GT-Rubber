@@ -1,16 +1,6 @@
 archivesBaseName = "${rootProject.archive_base_name}-forge"
 version = "${rootProject.minecraft_version}-${project.mod_version}"
 
-apply plugin: "com.github.johnrengelman.shadow"
-
-configurations {
-    common
-    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
-    compileClasspath.extendsFrom common
-    runtimeClasspath.extendsFrom common
-    developmentForge.extendsFrom common
-}
-
 architectury {
     platformSetupLoomIde()
     forge()
