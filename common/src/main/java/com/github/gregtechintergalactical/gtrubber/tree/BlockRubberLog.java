@@ -29,7 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Random;
 
-import static muramasa.antimatter.Data.HAMMER;
+import static muramasa.antimatter.data.AntimatterDefaultTools.HAMMER;
 
 public class BlockRubberLog extends BlockBasic {
 

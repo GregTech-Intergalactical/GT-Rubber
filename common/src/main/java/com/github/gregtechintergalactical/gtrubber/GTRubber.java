@@ -30,8 +30,10 @@ import net.minecraft.world.level.biome.Biome;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static muramasa.antimatter.Data.PLATE;
-import static muramasa.antimatter.Data.RING;
+import static muramasa.antimatter.data.AntimatterMaterialTypes.DUST;
+import static muramasa.antimatter.data.AntimatterMaterialTypes.INGOT;
+import static muramasa.antimatter.data.AntimatterMaterialTypes.PLATE;
+import static muramasa.antimatter.data.AntimatterMaterialTypes.RING;
 
 public class GTRubber extends AntimatterMod {
 
@@ -104,9 +106,9 @@ public class GTRubber extends AntimatterMod {
             }
             case DATA_READY -> {
                 if (!AntimatterAPI.isModLoaded("gregtech") && !AntimatterAPI.isModLoaded("gt4r")){
-                    AntimatterDynamics.DYNAMIC_RESOURCE_PACK.addRecipe(new ResourceLocation(ID, "resin_to_rubber"), JRecipe.smelting(JIngredient.ingredient().item(GTRubberData.StickyResin), JResult.item(Data.DUST.get(GTRubberData.RUBBER))).cookingTime(200).experience(0.1f));
+                    AntimatterDynamics.DYNAMIC_RESOURCE_PACK.addRecipe(new ResourceLocation(ID, "resin_to_rubber"), JRecipe.smelting(JIngredient.ingredient().item(GTRubberData.StickyResin), JResult.item(DUST.get(GTRubberData.RUBBER))).cookingTime(200).experience(0.1f));
                 }
-                AntimatterDynamics.DYNAMIC_RESOURCE_PACK.addRecipe(new ResourceLocation(ID, "rubber_dust_to_rubber_ingot"), JRecipe.smelting(JIngredient.ingredient().item(Data.DUST.get(GTRubberData.RUBBER)), JResult.item(Data.INGOT.get(GTRubberData.RUBBER))).cookingTime(200).experience(0.1f));
+                AntimatterDynamics.DYNAMIC_RESOURCE_PACK.addRecipe(new ResourceLocation(ID, "rubber_dust_to_rubber_ingot"), JRecipe.smelting(JIngredient.ingredient().item(DUST.get(GTRubberData.RUBBER)), JResult.item(INGOT.get(GTRubberData.RUBBER))).cookingTime(200).experience(0.1f));
             }
         }
     }

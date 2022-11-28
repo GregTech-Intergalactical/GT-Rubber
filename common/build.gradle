@@ -6,9 +6,7 @@ loom {
 }
 
 dependencies {
-    modImplementation("com.github.gregtech-intergalactical:antimatter-common:${antimatter_version}.1"){
-        exclude(group: "com.github.gregtech-intergalactical")
-    }
+    modImplementation("com.github.gregtech-intergalactical:antimatter-common:${antimatter_version}")
     modCompileOnly("net.devtech:arrp:0.5.7")
 }
 

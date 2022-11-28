@@ -75,13 +75,16 @@ allprojects {
             }
         }
         //GT and Felt.
-        maven { url 'https://jitpack.io' }
         maven {
             url "https://repo.repsy.io/mvn/trinsdar/gregtech-intergalactical/"
         }
         maven {
+            url "https://repo.repsy.io/mvn/distant/feltmc"
+        }
+        maven {
             url = uri("https://storage.googleapis.com/devan-maven/")
         }
+        maven { url 'https://jitpack.io' }
     }
 
     java {
