@@ -1,6 +1,7 @@
 package com.github.gregtechintergalactical.gtrubber;
 
 import com.github.gregtechintergalactical.gtrubber.tree.block.*;
+import com.github.gregtechintergalactical.gtrubber.tree.item.ItemRubberSign;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.block.BlockBasic;
 import muramasa.antimatter.item.ItemBasic;
@@ -12,6 +13,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.WoodType;
 
 import static muramasa.antimatter.material.TextureSet.SHINY;
 
@@ -22,7 +24,9 @@ public class GTRubberData {
 
     public static Material RUBBER = AntimatterAPI.register(Material.class, new Material(GTRubber.ID, "rubber", 0x000000, SHINY));
 
-    public static ItemBasic<?> StickyResin = new ItemBasic<>(GTRubber.ID, "sticky_resin");
+    public static WoodType RUBBER_WOOD_TYPE = new WoodType("rubber"){};
+
+
 
     public static final BlockRubberLeaves RUBBER_LEAVES = new BlockRubberLeaves(GTRubber.ID, "rubber_leaves");
     public static final BlockRubberLog RUBBER_LOG = new BlockRubberLog(GTRubber.ID, "rubber_log");
@@ -35,8 +39,13 @@ public class GTRubberData {
             return new Texture[]{new Texture(domain, "block/tree/rubber_planks")};
         }
     };
-    public static final BlockRubberSapling RUBBER_SAPLING = new BlockRubberSapling(GTRubber.ID, "rubber_sapling");
 
+    public static final BlockRubberSign RUBBER_SIGN = new BlockRubberSign();
+    public static final BlockRubberWallSign RUBBER_WALL_SIGN = new BlockRubberWallSign();
+    public static final BlockRubberSapling RUBBER_SAPLING = new BlockRubberSapling(GTRubber.ID, "rubber_sapling");
+    public static ItemBasic<?> StickyResin = new ItemBasic<>(GTRubber.ID, "sticky_resin");
+
+    public static ItemRubberSign RubberSign = new ItemRubberSign();
     public static void init() {
 
     }

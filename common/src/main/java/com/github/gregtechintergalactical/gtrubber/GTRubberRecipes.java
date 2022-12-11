@@ -12,7 +12,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Consumer;
 
 import static muramasa.antimatter.data.AntimatterMaterialTypes.DUST;
-import static muramasa.antimatter.data.AntimatterMaterialTypes.INGOT;
 
 public class GTRubberRecipes {
     public static void onCraftingEvent(CraftingEvent event){
