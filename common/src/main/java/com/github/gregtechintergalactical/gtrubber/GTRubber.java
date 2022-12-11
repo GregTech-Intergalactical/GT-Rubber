@@ -1,16 +1,15 @@
 package com.github.gregtechintergalactical.gtrubber;
 
+import com.github.gregtechintergalactical.gtrubber.datagen.GTRubberBlockLootProvider;
+import com.github.gregtechintergalactical.gtrubber.datagen.GTRubberBlockTagProvider;
+import com.github.gregtechintergalactical.gtrubber.datagen.GTRubberItemTagProvider;
+import com.github.gregtechintergalactical.gtrubber.datagen.GTRubberLanguageProvider;
 import com.github.gregtechintergalactical.gtrubber.tree.RubberTree;
 import com.github.gregtechintergalactical.gtrubber.tree.RubberTreeWorldGen;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Data;
 import muramasa.antimatter.datagen.AntimatterDynamics;
-import muramasa.antimatter.datagen.providers.AntimatterBlockLootProvider;
-import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
-import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
-import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
-import muramasa.antimatter.datagen.providers.AntimatterTagProvider;
+import muramasa.antimatter.datagen.providers.*;
 import muramasa.antimatter.event.MaterialEvent;
 import muramasa.antimatter.event.ProvidersEvent;
 import muramasa.antimatter.registration.RegistrationEvent;
@@ -30,6 +29,8 @@ import net.minecraft.world.level.biome.Biome;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Objects;
+
 import static muramasa.antimatter.data.AntimatterMaterialTypes.DUST;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.INGOT;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.PLATE;
@@ -45,39 +46,17 @@ public class GTRubber extends AntimatterMod {
         super.onRegistrarInit();
         AntimatterDynamics.clientProvider(ID, () -> new AntimatterBlockStateProvider(ID, NAME + " BlockStates"));
         AntimatterDynamics.clientProvider(ID, () -> new AntimatterItemModelProvider(ID, NAME + " Item Models"));
-        AntimatterDynamics.clientProvider(ID, () -> new AntimatterLanguageProvider(ID, NAME + " en_us Localization", "en_us"){
-            @Override
-            protected void english(String domain, String locale) {
-                super.english(domain, locale);
-                add(GTRubberData.RUBBER_LEAVES, "Rubber Leaves");
-                add(GTRubberData.RUBBER_LOG, "Rubber Log");
-                add(GTRubberData.STRIPPED_RUBBER_LOG, "Stripped Rubber Log");
-                add(GTRubberData.RUBBER_WOOD, "Rubber Wood");
-                add(GTRubberData.STRIPPED_RUBBER_WOOD, "Stripped Rubber Wood");
-                add(GTRubberData.RUBBER_PLANKS, "Rubber Planks");
-                add(GTRubberData.RUBBER_SAPLING, "Rubber Sapling");
-            }
-        });
+        AntimatterDynamics.clientProvider(ID, () -> new GTRubberLanguageProvider(ID, NAME + " en_us Localization", "en_us"));
     }
 
     public static void onProviders(ProvidersEvent ev) {
         final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
         ev.addProvider(ID, () -> {
-            p[0] = new AntimatterBlockTagProvider(ID, NAME.concat(" Block Tags"), false){
-                @Override
-                protected void processTags(String domain) {
-                    super.processTags(domain);
-                    this.tag(BlockTags.LOGS).add(GTRubberData.RUBBER_LOG);
-                    this.tag(BlockTags.LEAVES).add(GTRubberData.RUBBER_LEAVES);
-                    this.tag(BlockTags.SAPLINGS).add(GTRubberData.RUBBER_SAPLING);
-                    this.tag(BlockTags.PLANKS).add(GTRubberData.RUBBER_PLANKS);
-                    this.tag(TagUtils.getBlockTag(new ResourceLocation("minecraft", "logs_that_burn"))).add(GTRubberData.RUBBER_LOG, GTRubberData.STRIPPED_RUBBER_LOG, GTRubberData.RUBBER_WOOD, GTRubberData.STRIPPED_RUBBER_WOOD);
-                }
-            };
+            p[0] = new GTRubberBlockTagProvider(ID, NAME.concat(" Block Tags"), false);
             return p[0];
         });
 
-        ev.addProvider(ID, () -> new AntimatterTagProvider<Biome>(BuiltinRegistries.BIOME, ID, NAME.concat(" Biome Tags"), "worldgen/biome") {
+        ev.addProvider(ID, () -> new AntimatterTagProvider<>(BuiltinRegistries.BIOME, ID, NAME.concat(" Biome Tags"), "worldgen/biome") {
             @Override
             protected void processTags(String domain) {
                 TagsProvider.TagAppender<Biome> tags = this.tag(TagUtils.getBiomeTag(new ResourceLocation(ID, "is_invalid_rubber"))).addTag(BiomeTags.IS_TAIGA).addTag(BiomeTags.IS_MOUNTAIN).addTag(BiomeTags.IS_OCEAN).addTag(BiomeTags.IS_DEEP_OCEAN).addTag(BiomeTags.IS_NETHER).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_desert"))).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_plains")));
@@ -88,37 +67,17 @@ public class GTRubber extends AntimatterMod {
                 tags.addTag(TagUtils.getBiomeTag(new ResourceLocation(d, forge ? "is_snowy" : "snowy")));
             }
         });
+        ev.addProvider(ID, () -> new GTRubberItemTagProvider(ID, NAME.concat(" Item Tags"), false, p[0]));
 
-        ev.addProvider(ID,
-                () -> new AntimatterBlockLootProvider(ID, NAME.concat(" Loot generator")){
-                    @Override
-                    protected void loot() {
-                        super.loot();
-                        tables.put(GTRubberData.RUBBER_LEAVES, b -> createLeavesDrops(GTRubberData.RUBBER_LEAVES, GTRubberData.RUBBER_SAPLING, 0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F));
-                        this.add(GTRubberData.RUBBER_LOG);
-                        this.add(GTRubberData.RUBBER_SAPLING);
-                        this.add(GTRubberData.STRIPPED_RUBBER_LOG);
-                        this.add(GTRubberData.RUBBER_WOOD);
-                        this.add(GTRubberData.STRIPPED_RUBBER_WOOD);
-                        this.add(GTRubberData.RUBBER_PLANKS);
-                    }
-                });
+        ev.addProvider(ID, () -> new GTRubberBlockLootProvider(ID, NAME.concat(" Loot generator")));
     }
 
     @Override
     public void onRegistrationEvent(RegistrationEvent event, Side side) {
-        switch (event) {
-            case DATA_INIT -> {
-                GTRubberData.init();
-                RubberTree.init();
-                RubberTreeWorldGen.init();
-            }
-            case DATA_READY -> {
-                if (!AntimatterAPI.isModLoaded("gregtech") && !AntimatterAPI.isModLoaded("gt4r")){
-                    AntimatterDynamics.DYNAMIC_RESOURCE_PACK.addRecipe(new ResourceLocation(ID, "resin_to_rubber"), JRecipe.smelting(JIngredient.ingredient().item(GTRubberData.StickyResin), JResult.item(DUST.get(GTRubberData.RUBBER))).cookingTime(200).experience(0.1f));
-                }
-                AntimatterDynamics.DYNAMIC_RESOURCE_PACK.addRecipe(new ResourceLocation(ID, "rubber_dust_to_rubber_ingot"), JRecipe.smelting(JIngredient.ingredient().item(DUST.get(GTRubberData.RUBBER)), JResult.item(INGOT.get(GTRubberData.RUBBER))).cookingTime(200).experience(0.1f));
-            }
+        if (event == RegistrationEvent.DATA_INIT) {
+            GTRubberData.init();
+            RubberTree.init();
+            RubberTreeWorldGen.init();
         }
     }
 

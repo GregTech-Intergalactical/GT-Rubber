@@ -10,6 +10,10 @@ import muramasa.antimatter.block.BlockBasic;
 import muramasa.antimatter.item.ItemBasic;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.texture.Texture;
+import muramasa.antimatter.util.TagUtils;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
@@ -17,6 +21,8 @@ import static muramasa.antimatter.material.TextureSet.SHINY;
 
 public class GTRubberData {
 
+
+    public static final TagKey<Item> RUBBER_LOGS = TagUtils.getItemTag(new ResourceLocation(GTRubber.ID, "rubber_logs"));
 
     public static Material RUBBER = AntimatterAPI.register(Material.class, new Material(GTRubber.ID, "rubber", 0x000000, SHINY));
 
