@@ -2,22 +2,31 @@ package com.github.gregtechintergalactical.gtrubber.tree;
 
 import com.github.gregtechintergalactical.gtrubber.GTRubber;
 import com.github.gregtechintergalactical.gtrubber.GTRubberData;
+import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.block.BlockBasic;
 import muramasa.antimatter.datagen.builder.VariantBlockStateBuilder;
 import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
+import muramasa.antimatter.registration.IAntimatterObject;
+import muramasa.antimatter.registration.IModelProvider;
 import muramasa.antimatter.texture.Texture;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -29,12 +38,12 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Random;
 
+import static muramasa.antimatter.data.AntimatterDefaultTools.AXE;
 import static muramasa.antimatter.data.AntimatterDefaultTools.HAMMER;
 
-public class BlockRubberLog extends BlockBasic {
+public class BlockRubberLog extends BlockRubberWood {
 
     public static final DirectionProperty RESIN_FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
 
     private static final double CHANCE_FILL = 0.3;
 
@@ -60,10 +69,7 @@ public class BlockRubberLog extends BlockBasic {
 
     @Override
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if (worldIn.isClientSide || state.getValue(ResinState.INSTANCE) != ResinState.FILLED) {
-            return InteractionResult.PASS;
-        }
-        if (Utils.isPlayerHolding(player, handIn, HAMMER)) {
+        if (Utils.isPlayerHolding(player, handIn, HAMMER) && state.getValue(ResinState.INSTANCE) != ResinState.FILLED && !worldIn.isClientSide) {
             worldIn.setBlock(pos, state.setValue(ResinState.INSTANCE, ResinState.EMPTY), 3);
             Direction dir = state.getValue(RESIN_FACING);
             BlockPos spawnPos = pos.offset(dir.getStepX(), dir.getStepY(), dir.getStepZ());
@@ -72,6 +78,18 @@ public class BlockRubberLog extends BlockBasic {
                 Containers.dropItemStack(worldIn, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), GTRubberData.StickyResin.get(1));
             }
             return InteractionResult.SUCCESS;
+        }
+        if (this == GTRubberData.RUBBER_LOG){
+            ItemStack stack = player.getItemInHand(handIn);
+            if (stack.getItem() instanceof DiggerItem diggerItem && diggerItem.getDestroySpeed(stack, state) > 1.0f){
+                worldIn.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
+                if (!worldIn.isClientSide){
+                    BlockState target = GTRubberData.STRIPPED_RUBBER_LOG.defaultBlockState().setValue(AXIS, state.getValue(AXIS)).setValue(ResinState.INSTANCE, state.getValue(ResinState.INSTANCE)).setValue(RESIN_FACING, state.getValue(RESIN_FACING));
+                    worldIn.setBlockAndUpdate(pos, target);
+                    stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
+                }
+                return InteractionResult.SUCCESS;
+            }
         }
         return InteractionResult.CONSUME;
     }
@@ -82,15 +100,10 @@ public class BlockRubberLog extends BlockBasic {
     }
 
     @Override
-    public Texture[] getTextures() {
-        return new Texture[] { new Texture(domain, "block/tree/rubber_log") };
-    }
-
-    @Override
     public void onBlockModelBuild(Block block, AntimatterBlockStateProvider prov) {
-        ResourceLocation rubberLog = prov.existing(GTRubber.ID, "block/rubber_log");
-        ResourceLocation rubberLogEmpty = prov.existing(GTRubber.ID, "block/rubber_log_empty");
-        ResourceLocation rubberLogFilled = prov.existing(GTRubber.ID, "block/rubber_log_filled");
+        ResourceLocation rubberLog = prov.existing(GTRubber.ID, "block/" + id);
+        ResourceLocation rubberLogEmpty = prov.existing(GTRubber.ID, "block/" + id + "_empty");
+        ResourceLocation rubberLogFilled = prov.existing(GTRubber.ID, "block/" + id + "_filled");
         prov.getVariantBuilder(block).forAllStates(s ->
                 new VariantBlockStateBuilder.VariantBuilder().modelFile(s.getValue(ResinState.INSTANCE) == ResinState.NONE ? rubberLog : s.getValue(ResinState.INSTANCE) == ResinState.EMPTY ? rubberLogEmpty : rubberLogFilled)
                         .rotationY((int) s.getValue(RESIN_FACING).getOpposite().toYRot())

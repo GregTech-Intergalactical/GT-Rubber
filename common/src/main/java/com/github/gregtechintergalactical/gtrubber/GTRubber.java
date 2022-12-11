@@ -51,6 +51,10 @@ public class GTRubber extends AntimatterMod {
                 super.english(domain, locale);
                 add(GTRubberData.RUBBER_LEAVES, "Rubber Leaves");
                 add(GTRubberData.RUBBER_LOG, "Rubber Log");
+                add(GTRubberData.STRIPPED_RUBBER_LOG, "Stripped Rubber Log");
+                add(GTRubberData.RUBBER_WOOD, "Rubber Wood");
+                add(GTRubberData.STRIPPED_RUBBER_WOOD, "Stripped Rubber Wood");
+                add(GTRubberData.RUBBER_PLANKS, "Rubber Planks");
                 add(GTRubberData.RUBBER_SAPLING, "Rubber Sapling");
             }
         });
@@ -66,7 +70,8 @@ public class GTRubber extends AntimatterMod {
                     this.tag(BlockTags.LOGS).add(GTRubberData.RUBBER_LOG);
                     this.tag(BlockTags.LEAVES).add(GTRubberData.RUBBER_LEAVES);
                     this.tag(BlockTags.SAPLINGS).add(GTRubberData.RUBBER_SAPLING);
-                    this.tag(TagUtils.getBlockTag(new ResourceLocation("minecraft", "logs_that_burn"))).add(GTRubberData.RUBBER_LOG);
+                    this.tag(BlockTags.PLANKS).add(GTRubberData.RUBBER_PLANKS);
+                    this.tag(TagUtils.getBlockTag(new ResourceLocation("minecraft", "logs_that_burn"))).add(GTRubberData.RUBBER_LOG, GTRubberData.STRIPPED_RUBBER_LOG, GTRubberData.RUBBER_WOOD, GTRubberData.STRIPPED_RUBBER_WOOD);
                 }
             };
             return p[0];
@@ -92,6 +97,10 @@ public class GTRubber extends AntimatterMod {
                         tables.put(GTRubberData.RUBBER_LEAVES, b -> createLeavesDrops(GTRubberData.RUBBER_LEAVES, GTRubberData.RUBBER_SAPLING, 0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F));
                         this.add(GTRubberData.RUBBER_LOG);
                         this.add(GTRubberData.RUBBER_SAPLING);
+                        this.add(GTRubberData.STRIPPED_RUBBER_LOG);
+                        this.add(GTRubberData.RUBBER_WOOD);
+                        this.add(GTRubberData.STRIPPED_RUBBER_WOOD);
+                        this.add(GTRubberData.RUBBER_PLANKS);
                     }
                 });
     }

@@ -19,6 +19,7 @@ public class GTRubberFabricRegistrar extends AntimatterMod {
         if (event == RegistrationEvent.DATA_READY){
             FlammableBlockRegistry flammableRegistry = FlammableBlockRegistry.getDefaultInstance();
             flammableRegistry.add(GTRubberData.RUBBER_LOG, 5, 5);
+            flammableRegistry.add(GTRubberData.STRIPPED_RUBBER_LOG, 5, 5);
             flammableRegistry.add(GTRubberData.RUBBER_LEAVES, 60, 30);
         }
     }
