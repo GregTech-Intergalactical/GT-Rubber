@@ -1,4 +1,4 @@
-package com.github.gregtechintergalactical.gtrubber.tree;
+package com.github.gregtechintergalactical.gtrubber.tree.block;
 
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.block.BlockPropertiesHelper;

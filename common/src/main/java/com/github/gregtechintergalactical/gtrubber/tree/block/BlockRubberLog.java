@@ -1,14 +1,11 @@
-package com.github.gregtechintergalactical.gtrubber.tree;
+package com.github.gregtechintergalactical.gtrubber.tree.block;
 
 import com.github.gregtechintergalactical.gtrubber.GTRubber;
 import com.github.gregtechintergalactical.gtrubber.GTRubberData;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.block.BlockBasic;
+import com.github.gregtechintergalactical.gtrubber.tree.ResinState;
+import com.github.gregtechintergalactical.gtrubber.tree.block.BlockRubberWood;
 import muramasa.antimatter.datagen.builder.VariantBlockStateBuilder;
 import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
-import muramasa.antimatter.registration.IAntimatterObject;
-import muramasa.antimatter.registration.IModelProvider;
-import muramasa.antimatter.texture.Texture;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -25,20 +22,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Random;
 
-import static muramasa.antimatter.data.AntimatterDefaultTools.AXE;
 import static muramasa.antimatter.data.AntimatterDefaultTools.HAMMER;
 
 public class BlockRubberLog extends BlockRubberWood {
