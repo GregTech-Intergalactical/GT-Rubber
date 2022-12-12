@@ -26,6 +26,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -78,6 +79,8 @@ public class GTRubber extends AntimatterMod {
             GTRubberData.init();
             RubberTree.init();
             RubberTreeWorldGen.init();
+        } else if (event == RegistrationEvent.DATA_READY){
+            WoodType.register(GTRubberData.RUBBER_WOOD_TYPE);
         }
     }
 

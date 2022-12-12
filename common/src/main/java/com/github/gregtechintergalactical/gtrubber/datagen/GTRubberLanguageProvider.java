@@ -18,5 +18,6 @@ public class GTRubberLanguageProvider extends AntimatterLanguageProvider {
         add(GTRubberData.STRIPPED_RUBBER_WOOD, "Stripped Rubber Wood");
         add(GTRubberData.RUBBER_PLANKS, "Rubber Planks");
         add(GTRubberData.RUBBER_SAPLING, "Rubber Sapling");
+        add(GTRubberData.RUBBER_SIGN, "Rubber Sign");
     }
 }

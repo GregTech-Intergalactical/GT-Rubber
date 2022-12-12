@@ -1,5 +1,6 @@
 package com.github.gregtechintergalactical.gtrubber;
 
+import com.github.gregtechintergalactical.gtrubber.tree.BlockEntityRubberSign;
 import com.github.gregtechintergalactical.gtrubber.tree.block.*;
 import com.github.gregtechintergalactical.gtrubber.tree.item.ItemRubberSign;
 import muramasa.antimatter.AntimatterAPI;
@@ -12,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
@@ -24,7 +26,7 @@ public class GTRubberData {
 
     public static Material RUBBER = AntimatterAPI.register(Material.class, new Material(GTRubber.ID, "rubber", 0x000000, SHINY));
 
-    public static WoodType RUBBER_WOOD_TYPE = new WoodType("rubber"){};
+    public static WoodType RUBBER_WOOD_TYPE = new WoodType("gtrubber:rubber"){};
 
 
 
@@ -43,10 +45,13 @@ public class GTRubberData {
     public static final BlockRubberSign RUBBER_SIGN = new BlockRubberSign();
     public static final BlockRubberWallSign RUBBER_WALL_SIGN = new BlockRubberWallSign();
     public static final BlockRubberSapling RUBBER_SAPLING = new BlockRubberSapling(GTRubber.ID, "rubber_sapling");
+
+    public static final BlockEntityType<BlockEntityRubberSign> SIGN_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntityRubberSign::new, RUBBER_SIGN, RUBBER_WALL_SIGN).build(null);
+
     public static ItemBasic<?> StickyResin = new ItemBasic<>(GTRubber.ID, "sticky_resin");
 
     public static ItemRubberSign RubberSign = new ItemRubberSign();
     public static void init() {
-
+        AntimatterAPI.register(BlockEntityType.class, "rubber_sign", GTRubber.ID, SIGN_BLOCK_ENTITY);
     }
 }

@@ -7,6 +7,7 @@ import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
 import muramasa.antimatter.event.CraftingEvent;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Consumer;
@@ -27,6 +28,7 @@ public class GTRubberRecipes {
         }
         provider.addStackRecipe(consumer, GTRubber.ID, "", "rubber_wood", "has_rubber_log", provider.hasSafeItem(GTRubberData.RUBBER_LOG), new ItemStack(GTRubberData.RUBBER_WOOD, 3), ImmutableMap.of('R', GTRubberData.RUBBER_LOG), "RR", "RR");
         provider.addStackRecipe(consumer, GTRubber.ID, "", "rubber_wood", "has_stripped_rubber_log", provider.hasSafeItem(GTRubberData.STRIPPED_RUBBER_LOG), new ItemStack(GTRubberData.STRIPPED_RUBBER_WOOD, 3), ImmutableMap.of('R', GTRubberData.STRIPPED_RUBBER_LOG), "RR", "RR");
+        provider.addStackRecipe(consumer, GTRubber.ID, "", "rubber_wood", "has_rubber_planks", provider.hasSafeItem(GTRubberData.RUBBER_WOOD), new ItemStack(GTRubberData.RubberSign, 3), ImmutableMap.of('R', GTRubberData.RUBBER_PLANKS, 'S', Items.STICK), "RRR", "RRR", " S ");
     }
 
 }
