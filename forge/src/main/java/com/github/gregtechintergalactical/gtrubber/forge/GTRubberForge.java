@@ -9,6 +9,8 @@ import muramasa.antimatter.Ref;
 import muramasa.antimatter.event.forge.AntimatterCraftingEvent;
 import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -41,7 +43,7 @@ public class GTRubberForge extends GTRubber {
 
     @OnlyIn(Dist.CLIENT)
     private void onEntityRendererRegister(EntityRenderersEvent.RegisterRenderers event){
-        event.registerBlockEntityRenderer(GTRubberData.SIGN_BLOCK_ENTITY, SignRenderer::new);
+        event.registerBlockEntityRenderer((BlockEntityType<? extends SignBlockEntity>) GTRubberData.SIGN_BLOCK_ENTITY, SignRenderer::new);
     }
 
 

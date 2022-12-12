@@ -46,7 +46,7 @@ public class GTRubberData {
     public static final BlockRubberWallSign RUBBER_WALL_SIGN = new BlockRubberWallSign();
     public static final BlockRubberSapling RUBBER_SAPLING = new BlockRubberSapling(GTRubber.ID, "rubber_sapling");
 
-    public static final BlockEntityType<BlockEntityRubberSign> SIGN_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntityRubberSign::new, RUBBER_SIGN, RUBBER_WALL_SIGN).build(null);
+    public static final BlockEntityType<?> SIGN_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntityRubberSign::new, RUBBER_SIGN, RUBBER_WALL_SIGN).build(null);
 
     public static ItemBasic<?> StickyResin = new ItemBasic<>(GTRubber.ID, "sticky_resin");
 
