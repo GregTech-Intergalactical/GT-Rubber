@@ -48,12 +48,17 @@ public class GTRubberData {
     public static final BlockRubberButton RUBBER_BUTTON = new BlockRubberButton();
     public static final BlockRubberPressurePlate RUBBER_PRESSURE_PLATE = new BlockRubberPressurePlate();
     public static final BlockRubberDoor RUBBER_DOOR = new BlockRubberDoor();
-    public static final BlockRubberTrapDoor RUBBER_TRAP_DOOR = new BlockRubberTrapDoor();
+    public static final BlockRubberTrapDoor RUBBER_TRAPDOOR = new BlockRubberTrapDoor();
+
+    public static final BlockRubberSlab RUBBER_SLAB = new BlockRubberSlab();
+    public static final BlockRubberStairs RUBBER_STAIRS = new BlockRubberStairs();
+
+    public static final BlockRubberFence RUBBER_FENCE = new BlockRubberFence();
+    public static final BlockRubberFenceGate RUBBER_FENCE_GATE = new BlockRubberFenceGate();
+
     public static final BlockEntityType<?> SIGN_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntityRubberSign::new, RUBBER_SIGN, RUBBER_WALL_SIGN).build(null);
 
     public static ItemBasic<?> StickyResin = new ItemBasic<>(GTRubber.ID, "sticky_resin");
-
-    public static ItemRubberSign RubberSign = new ItemRubberSign();
     public static void init() {
         AntimatterAPI.register(BlockEntityType.class, "rubber_sign", GTRubber.ID, SIGN_BLOCK_ENTITY);
     }

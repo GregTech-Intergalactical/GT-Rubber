@@ -3,10 +3,12 @@ package com.github.gregtechintergalactical.gtrubber.tree.block;
 import com.github.gregtechintergalactical.gtrubber.GTRubber;
 import com.github.gregtechintergalactical.gtrubber.GTRubberData;
 import com.github.gregtechintergalactical.gtrubber.tree.BlockEntityRubberSign;
+import com.github.gregtechintergalactical.gtrubber.tree.item.ItemRubberSign;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.registration.IAntimatterObject;
 import muramasa.antimatter.registration.IItemBlockProvider;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -30,8 +32,8 @@ public class BlockRubberSign extends StandingSignBlock implements IAntimatterObj
     }
 
     @Override
-    public boolean generateItemBlock() {
-        return false;
+    public BlockItem getItemBlock() {
+        return new ItemRubberSign();
     }
 
     @Override

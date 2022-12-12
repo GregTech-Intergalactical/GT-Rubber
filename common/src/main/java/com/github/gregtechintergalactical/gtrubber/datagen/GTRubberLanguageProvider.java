@@ -19,5 +19,13 @@ public class GTRubberLanguageProvider extends AntimatterLanguageProvider {
         add(GTRubberData.RUBBER_PLANKS, "Rubber Planks");
         add(GTRubberData.RUBBER_SAPLING, "Rubber Sapling");
         add(GTRubberData.RUBBER_SIGN, "Rubber Sign");
+        add(GTRubberData.RUBBER_DOOR, "Rubber Door");
+        add(GTRubberData.RUBBER_TRAPDOOR, "Rubber Trapdoor");
+        add(GTRubberData.RUBBER_BUTTON, "Rubber Button");
+        add(GTRubberData.RUBBER_PRESSURE_PLATE, "Rubber Pressure Plate");
+        add(GTRubberData.RUBBER_SLAB, "Rubber Slab");
+        add(GTRubberData.RUBBER_STAIRS, "Rubber Stairs");
+        add(GTRubberData.RUBBER_FENCE, "Rubber Fence");
+        add(GTRubberData.RUBBER_FENCE_GATE, "Rubber Fence Gate");
     }
 }

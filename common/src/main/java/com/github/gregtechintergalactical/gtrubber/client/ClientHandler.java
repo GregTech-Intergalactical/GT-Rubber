@@ -12,7 +12,7 @@ public class ClientHandler {
     public static void init() {
         ModelUtils.setRenderLayer(GTRubberData.RUBBER_SAPLING, RenderType.cutout());
         ModelUtils.setRenderLayer(GTRubberData.RUBBER_LEAVES, RenderType.cutout());
-        ModelUtils.setRenderLayer(GTRubberData.RUBBER_TRAP_DOOR, RenderType.cutout());
+        ModelUtils.setRenderLayer(GTRubberData.RUBBER_TRAPDOOR, RenderType.cutout());
         ModelUtils.setRenderLayer(GTRubberData.RUBBER_DOOR, RenderType.cutout());
         Sheets.SIGN_MATERIALS.put(GTRubberData.RUBBER_WOOD_TYPE, createSignMaterial(GTRubberData.RUBBER_WOOD_TYPE));
     }

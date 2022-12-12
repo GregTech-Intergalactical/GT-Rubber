@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.Block;
 public class ItemRubberSign extends SignItem implements IAntimatterObject, ITextureProvider, IModelProvider {
     public ItemRubberSign() {
         super(new Item.Properties().stacksTo(16).tab(CreativeModeTab.TAB_DECORATIONS), GTRubberData.RUBBER_SIGN, GTRubberData.RUBBER_WALL_SIGN);
-        AntimatterAPI.register(ItemRubberSign.class, this);
     }
 
     @Override
