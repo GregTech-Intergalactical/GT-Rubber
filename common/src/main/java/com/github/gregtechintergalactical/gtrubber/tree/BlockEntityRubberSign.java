@@ -12,7 +12,7 @@ public class BlockEntityRubberSign extends SignBlockEntity {
     }
 
     @Override
-    public BlockEntityType<BlockEntityRubberSign> getType() {
+    public BlockEntityType<?> getType() {
         return GTRubberData.SIGN_BLOCK_ENTITY;
     }
 }
