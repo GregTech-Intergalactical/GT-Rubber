@@ -5,7 +5,6 @@ import com.github.gregtechintergalactical.gtrubber.GTRubberData;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemTagProvider;
 import muramasa.antimatter.util.TagUtils;
-import net.devtech.arrp.json.tags.JTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 

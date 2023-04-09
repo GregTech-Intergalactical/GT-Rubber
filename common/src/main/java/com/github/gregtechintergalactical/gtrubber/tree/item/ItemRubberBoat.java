@@ -1,5 +1,6 @@
 package com.github.gregtechintergalactical.gtrubber.tree.item;
 
+import com.github.gregtechintergalactical.gtrubber.entity.RubberBoatEntity;
 import muramasa.antimatter.Ref;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
@@ -52,10 +53,10 @@ public class ItemRubberBoat extends BoatItem {
 
         // Spawn boat entitygetTargetingMargin
         if (hitResult.getType() == HitResult.Type.BLOCK) {
-            TerraformBoatEntity boatEntity = new TerraformBoatEntity(world, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z);
+            RubberBoatEntity boatEntity = new RubberBoatEntity(world, hitResult.getLocation().x, hitResult.getLocation().y, hitResult.getLocation().z);
 
-            boatEntity.setTerraformBoat(this.boatSupplier.get());
-            boatEntity.setYaw(user.getYaw());
+
+            boatEntity.setYRot(user.getYRot());
 
             if (!world.noCollision(boatEntity, boatEntity.getBoundingBox().inflate(-0.1d))) {
                 return InteractionResultHolder.fail(stack);
