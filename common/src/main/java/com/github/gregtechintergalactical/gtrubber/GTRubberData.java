@@ -1,5 +1,6 @@
 package com.github.gregtechintergalactical.gtrubber;
 
+import com.github.gregtechintergalactical.gtrubber.entity.RubberBoatEntity;
 import com.github.gregtechintergalactical.gtrubber.tree.BlockEntityRubberSign;
 import com.github.gregtechintergalactical.gtrubber.tree.block.*;
 import com.github.gregtechintergalactical.gtrubber.tree.item.ItemRubberSign;
@@ -11,6 +12,8 @@ import muramasa.antimatter.texture.Texture;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -57,6 +60,8 @@ public class GTRubberData {
     public static final BlockRubberFenceGate RUBBER_FENCE_GATE = new BlockRubberFenceGate();
 
     public static final BlockEntityType<?> SIGN_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntityRubberSign::new, RUBBER_SIGN, RUBBER_WALL_SIGN).build(null);
+
+    public static final EntityType<RubberBoatEntity> RUBBER_BOAT_ENTITY = EntityType.Builder.<RubberBoatEntity>of(RubberBoatEntity::new, MobCategory.MISC).sized(1.375f, 0.5625f).build(GTRubber.ID + ":rubber_boat");
 
     public static ItemBasic<?> StickyResin = new ItemBasic<>(GTRubber.ID, "sticky_resin");
     public static void init() {
