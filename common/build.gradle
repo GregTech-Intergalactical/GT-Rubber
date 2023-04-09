@@ -7,7 +7,7 @@ loom {
 
 dependencies {
     modImplementation("com.github.gregtech-intergalactical:antimatter-common:${antimatter_version}")
-    modCompileOnly("net.devtech:arrp:0.5.7")
+    //modCompileOnly("net.devtech:arrp:0.5.7")
 }
 
 architectury {
