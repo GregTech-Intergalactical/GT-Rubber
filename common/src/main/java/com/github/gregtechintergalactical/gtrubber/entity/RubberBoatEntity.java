@@ -16,5 +16,9 @@ public class RubberBoatEntity extends Boat {
 
     public RubberBoatEntity(Level level, double x, double y, double z) {
         this(GTRubberData.RUBBER_BOAT_ENTITY, level);
+        this.setPos(x, y, z);
+        this.xo = x;
+        this.yo = y;
+        this.zo = z;
     }
 }

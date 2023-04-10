@@ -31,6 +31,7 @@ public class ItemRubberBoat extends ItemBasic<ItemRubberBoat> {
         super(GTRubber.ID, "rubber_boat", new Properties().tab(Ref.TAB_ITEMS).stacksTo(1));
     }
 
+    @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
         ItemStack stack = user.getItemInHand(hand);
 

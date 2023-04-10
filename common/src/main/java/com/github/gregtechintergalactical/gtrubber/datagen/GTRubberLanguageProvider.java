@@ -27,5 +27,7 @@ public class GTRubberLanguageProvider extends AntimatterLanguageProvider {
         add(GTRubberData.RUBBER_STAIRS, "Rubber Stairs");
         add(GTRubberData.RUBBER_FENCE, "Rubber Fence");
         add(GTRubberData.RUBBER_FENCE_GATE, "Rubber Fence Gate");
+        add(GTRubberData.RUBBER_BOAT_ENTITY, "Rubber Boat");
+        add(GTRubberData.RubberBoat, "Rubber Boat");
     }
 }

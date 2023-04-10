@@ -36,6 +36,7 @@ public class GTRubberRecipes {
         provider.addStackRecipe(consumer, GTRubber.ID, "", "rubber_wood", "has_rubber_planks", provider.hasSafeItem(GTRubberData.RUBBER_WOOD), new ItemStack(GTRubberData.RUBBER_STAIRS, 4), ImmutableMap.of('R', GTRubberData.RUBBER_PLANKS), "R  ", "RR ", "RRR");
         provider.addStackRecipe(consumer, GTRubber.ID, "", "rubber_wood", "has_rubber_planks", provider.hasSafeItem(GTRubberData.RUBBER_WOOD), new ItemStack(GTRubberData.RUBBER_DOOR, 3), ImmutableMap.of('R', GTRubberData.RUBBER_PLANKS), "RR", "RR", "RR");
         provider.addStackRecipe(consumer, GTRubber.ID, "", "rubber_wood", "has_rubber_planks", provider.hasSafeItem(GTRubberData.RUBBER_WOOD), new ItemStack(GTRubberData.RUBBER_TRAPDOOR, 2), ImmutableMap.of('R', GTRubberData.RUBBER_PLANKS), "RRR", "RRR");
+        provider.addStackRecipe(consumer, GTRubber.ID, "", "rubber_wood", "has_rubber_planks", provider.hasSafeItem(GTRubberData.RUBBER_WOOD), new ItemStack(GTRubberData.RubberBoat), ImmutableMap.of('R', GTRubberData.RUBBER_PLANKS), "R R", "RRR");
         provider.shapeless(consumer, GTRubber.ID, "", "rubber_wood", "has_rubber_planks", provider.hasSafeItem(GTRubberData.RUBBER_PLANKS), new ItemStack(GTRubberData.RUBBER_BUTTON), GTRubberData.RUBBER_PLANKS);
     }
 
