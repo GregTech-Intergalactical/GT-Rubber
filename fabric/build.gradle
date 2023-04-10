@@ -3,6 +3,12 @@ version = "${rootProject.minecraft_version}-${project.mod_version}"
 
 apply plugin: "com.github.johnrengelman.shadow"
 
+def generatedResources = file("src/generated/resources")
+def accessWidenerFile = project(":common").file("src/main/resources/gtrubber.accesswidener")
+
+loom {
+    accessWidenerPath = accessWidenerFile
+}
 
 architectury {
     platformSetupLoomIde()
@@ -18,7 +24,22 @@ dependencies {
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}"
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDir generatedResources
+        }
+    }
+}
+
+task copyAccessWidener(type: Copy) {
+    from accessWidenerFile
+    into generatedResources
+}
+
 processResources {
+    dependsOn copyAccessWidener
+
     inputs.property "version", project.version
 
     filesMatching("fabric.mod.json") {
@@ -27,7 +48,7 @@ processResources {
 }
 
 sourcesJar {
-    def commonSources = project(":common").sourcesJar
-    dependsOn commonSources
-    from commonSources.archiveFile.map { zipTree(it) }
+    from(project(':common').sourceSets.main.allSource) {
+        exclude("gtrubber.accesswidener") // duplicate on fabric, unneeded on forge
+    }
 }

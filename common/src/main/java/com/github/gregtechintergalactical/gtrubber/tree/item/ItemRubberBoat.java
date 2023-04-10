@@ -1,7 +1,9 @@
 package com.github.gregtechintergalactical.gtrubber.tree.item;
 
+import com.github.gregtechintergalactical.gtrubber.GTRubber;
 import com.github.gregtechintergalactical.gtrubber.entity.RubberBoatEntity;
 import muramasa.antimatter.Ref;
+import muramasa.antimatter.item.ItemBasic;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -23,10 +25,10 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class ItemRubberBoat extends BoatItem {
+public class ItemRubberBoat extends ItemBasic<ItemRubberBoat> {
     private static final Predicate<Entity> RIDERS = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
     public ItemRubberBoat() {
-        super(Boat.Type.OAK, new Properties().tab(Ref.TAB_ITEMS).stacksTo(1));
+        super(GTRubber.ID, "rubber_boat", new Properties().tab(Ref.TAB_ITEMS).stacksTo(1));
     }
 
     public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {

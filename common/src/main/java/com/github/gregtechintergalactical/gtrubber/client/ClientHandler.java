@@ -1,5 +1,6 @@
 package com.github.gregtechintergalactical.gtrubber.client;
 
+import com.github.gregtechintergalactical.gtrubber.GTRubber;
 import com.github.gregtechintergalactical.gtrubber.GTRubberData;
 import muramasa.antimatter.client.ModelUtils;
 import net.minecraft.client.renderer.RenderType;
@@ -18,7 +19,6 @@ public class ClientHandler {
     }
 
     private static Material createSignMaterial(WoodType woodType) {
-        ResourceLocation location = new ResourceLocation(woodType.name());
-        return new Material(Sheets.SIGN_SHEET, new ResourceLocation(location.getNamespace(), "entity/signs/" + location.getPath()));
+        return new Material(Sheets.SIGN_SHEET, new ResourceLocation(GTRubber.ID, "entity/signs/" + woodType.name()));
     }
 }
