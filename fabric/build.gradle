@@ -1,5 +1,5 @@
 archivesBaseName = "${rootProject.archive_base_name}-fabric"
-version = "${rootProject.minecraft_version}-${project.mod_version}"
+version = "${project.mod_version}-${rootProject.minecraft_version}"
 
 apply plugin: "com.github.johnrengelman.shadow"
 
@@ -40,10 +40,10 @@ task copyAccessWidener(type: Copy) {
 processResources {
     dependsOn copyAccessWidener
 
-    inputs.property "version", project.version
+    inputs.property "version", project.mod_version
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version
+        expand "version": project.mod_version
     }
 }
 
