@@ -26,6 +26,6 @@ description='''Just a simple mod that adds gregtech's rubber trees.'''
 [[dependencies.gtrubber]]
     modId="antimatter"
     mandatory=true
-    versionRange="[0.2-rc1,)"
+    versionRange="[0.2,)"
     ordering="AFTER"
     side="BOTH"
