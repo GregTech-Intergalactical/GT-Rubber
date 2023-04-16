@@ -6,6 +6,14 @@ architectury {
     forge()
 }
 
+loom{
+    accessWidenerPath = project(":common").file("src/main/resources/gtrubber.accesswidener")
+    forge {
+        convertAccessWideners = true
+        extraAccessWideners.add("gtrubber.accesswidener")
+    }
+}
+
 dependencies {
     forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
     modImplementation("com.github.gregtech-intergalactical:antimatter-forge:${antimatter_version}")
