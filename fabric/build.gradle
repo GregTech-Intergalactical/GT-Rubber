@@ -20,7 +20,9 @@ dependencies {
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
     common(project(path: ":common", configuration: "namedElements"))
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric"))
-    modImplementation("com.github.gregtech-intergalactical:antimatter-fabric:${antimatter_version}")
+    modImplementation("com.github.gregtech-intergalactical:antimatter-fabric:${antimatter_version}"){
+        exclude(group: "curse.maven")
+    }
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}"
 }
 
