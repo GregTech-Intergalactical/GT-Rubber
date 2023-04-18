@@ -33,6 +33,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import java.util.Random;
 
 import static muramasa.antimatter.data.AntimatterDefaultTools.HAMMER;
+import static muramasa.antimatter.data.AntimatterDefaultTools.KNIFE;
 
 public class BlockRubberLog extends BlockRubberWood {
 
@@ -62,7 +63,7 @@ public class BlockRubberLog extends BlockRubberWood {
 
     @Override
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if (Utils.isPlayerHolding(player, handIn, HAMMER) && state.getValue(ResinState.INSTANCE) != ResinState.FILLED && !worldIn.isClientSide) {
+        if (Utils.isPlayerHolding(player, handIn, KNIFE) && state.getValue(ResinState.INSTANCE) != ResinState.FILLED && !worldIn.isClientSide) {
             worldIn.setBlock(pos, state.setValue(ResinState.INSTANCE, ResinState.EMPTY), 3);
             Direction dir = state.getValue(RESIN_FACING);
             BlockPos spawnPos = pos.offset(dir.getStepX(), dir.getStepY(), dir.getStepZ());
