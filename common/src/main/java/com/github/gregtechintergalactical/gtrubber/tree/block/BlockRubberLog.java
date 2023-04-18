@@ -85,7 +85,7 @@ public class BlockRubberLog extends BlockRubberWood {
                 return InteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.CONSUME;
+        return InteractionResult.PASS;
     }
 
     @Override
