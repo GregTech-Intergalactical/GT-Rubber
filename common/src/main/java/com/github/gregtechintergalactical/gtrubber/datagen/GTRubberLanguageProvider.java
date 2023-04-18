@@ -3,6 +3,8 @@ package com.github.gregtechintergalactical.gtrubber.datagen;
 import com.github.gregtechintergalactical.gtrubber.GTRubberData;
 import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
 
+import static muramasa.antimatter.util.Utils.lowerUnderscoreToUpperSpaced;
+
 public class GTRubberLanguageProvider extends AntimatterLanguageProvider {
     public GTRubberLanguageProvider(String providerDomain, String providerName, String locale) {
         super(providerDomain, providerName, locale);
@@ -29,5 +31,6 @@ public class GTRubberLanguageProvider extends AntimatterLanguageProvider {
         add(GTRubberData.RUBBER_FENCE_GATE, "Rubber Fence Gate");
         add(GTRubberData.RUBBER_BOAT_ENTITY, "Rubber Boat");
         add(GTRubberData.RubberBoat, "Rubber Boat");
+        add(GTRubberData.SAP_BAG, "Sap Bag");
     }
 }

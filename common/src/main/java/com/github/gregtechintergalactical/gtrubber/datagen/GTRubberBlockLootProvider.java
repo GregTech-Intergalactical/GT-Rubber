@@ -29,6 +29,7 @@ public class GTRubberBlockLootProvider extends AntimatterBlockLootProvider {
         this.add(GTRubberData.RUBBER_TRAPDOOR);
         tables.put(GTRubberData.RUBBER_SIGN, b -> BlockLoot.createSingleItemTable(GTRubberData.RUBBER_SIGN.asItem()));
         tables.put(GTRubberData.RUBBER_WALL_SIGN, b -> BlockLoot.createSingleItemTable(GTRubberData.RUBBER_SIGN.asItem()));
+        this.add(GTRubberData.SAP_BAG);
 
     }
 }

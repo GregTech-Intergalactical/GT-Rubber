@@ -1,5 +1,6 @@
 package com.github.gregtechintergalactical.gtrubber;
 
+import com.github.gregtechintergalactical.gtrubber.client.BakedModels;
 import com.github.gregtechintergalactical.gtrubber.datagen.GTRubberBlockLootProvider;
 import com.github.gregtechintergalactical.gtrubber.datagen.GTRubberBlockTagProvider;
 import com.github.gregtechintergalactical.gtrubber.datagen.GTRubberItemTagProvider;
@@ -78,6 +79,8 @@ public class GTRubber extends AntimatterMod {
             RubberTreeWorldGen.init();
         } else if (event == RegistrationEvent.DATA_READY){
             WoodType.register(GTRubberData.RUBBER_WOOD_TYPE);
+        } else if (event == RegistrationEvent.CLIENT_DATA_INIT){
+            BakedModels.init();
         }
     }
 

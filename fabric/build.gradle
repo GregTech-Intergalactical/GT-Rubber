@@ -22,6 +22,7 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric"))
     modImplementation("com.github.gregtech-intergalactical:antimatter-fabric:${antimatter_version}"){
         exclude(group: "curse.maven")
+        exclude(group: "maven.modrinth")
     }
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}"
 }

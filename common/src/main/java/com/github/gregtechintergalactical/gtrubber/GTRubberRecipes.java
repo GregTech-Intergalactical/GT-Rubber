@@ -2,6 +2,8 @@ package com.github.gregtechintergalactical.gtrubber;
 
 import com.google.common.collect.ImmutableMap;
 import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.Ref;
+import muramasa.antimatter.data.ForgeCTags;
 import muramasa.antimatter.datagen.builder.AntimatterCookingRecipeBuilder;
 import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
 import muramasa.antimatter.event.CraftingEvent;
@@ -12,6 +14,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Consumer;
 
+import static com.github.gregtechintergalactical.gtrubber.GTRubberData.SAP_BAG;
+import static com.google.common.collect.ImmutableMap.of;
+import static muramasa.antimatter.data.AntimatterDefaultTools.SAW;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.DUST;
 
 public class GTRubberRecipes {
@@ -38,6 +43,9 @@ public class GTRubberRecipes {
         provider.addStackRecipe(consumer, GTRubber.ID, "", "rubber_wood", "has_rubber_planks", provider.hasSafeItem(GTRubberData.RUBBER_WOOD), new ItemStack(GTRubberData.RUBBER_TRAPDOOR, 2), ImmutableMap.of('R', GTRubberData.RUBBER_PLANKS), "RRR", "RRR");
         provider.addStackRecipe(consumer, GTRubber.ID, "", "rubber_wood", "has_rubber_planks", provider.hasSafeItem(GTRubberData.RUBBER_WOOD), new ItemStack(GTRubberData.RubberBoat), ImmutableMap.of('R', GTRubberData.RUBBER_PLANKS), "R R", "RRR");
         provider.shapeless(consumer, GTRubber.ID, "", "rubber_wood", "has_rubber_planks", provider.hasSafeItem(GTRubberData.RUBBER_PLANKS), new ItemStack(GTRubberData.RUBBER_BUTTON), GTRubberData.RUBBER_PLANKS);
+        provider.addStackRecipe(consumer, GTRubber.ID, "sapbag", "blocks", "has_saw", provider.hasSafeItem(SAW.getTag()),
+                new ItemStack(SAP_BAG), of('L', ForgeCTags.LEATHER, 'S', SAW.getTag(), 's', Items.STICK), "sss", "LSL", "LLL");
+        provider.addStackRecipe(consumer, GTRubber.ID, "torch", "torches", "has_sticky_resin", provider.hasSafeItem(GTRubberData.StickyResin), new ItemStack(Items.TORCH, 4), of('S', GTRubberData.StickyResin, 'R', Items.STICK), "S", "R");
     }
 
 }

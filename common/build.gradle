@@ -8,6 +8,7 @@ loom {
 dependencies {
     modImplementation("com.github.gregtech-intergalactical:antimatter-common:${antimatter_version}"){
         exclude(group: "curse.maven")
+        exclude(group: "maven.modrinth")
     }
     //modCompileOnly("net.devtech:arrp:0.5.7")
 }

@@ -1,10 +1,11 @@
 package com.github.gregtechintergalactical.gtrubber;
 
+import com.github.gregtechintergalactical.gtrubber.block.BlockEntitySapBag;
+import com.github.gregtechintergalactical.gtrubber.block.BlockSapBag;
 import com.github.gregtechintergalactical.gtrubber.entity.RubberBoatEntity;
 import com.github.gregtechintergalactical.gtrubber.tree.BlockEntityRubberSign;
 import com.github.gregtechintergalactical.gtrubber.tree.block.*;
 import com.github.gregtechintergalactical.gtrubber.tree.item.ItemRubberBoat;
-import com.github.gregtechintergalactical.gtrubber.tree.item.ItemRubberSign;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.block.BlockBasic;
 import muramasa.antimatter.item.ItemBasic;
@@ -22,6 +23,8 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
+
+import java.util.Collections;
 
 import static muramasa.antimatter.material.TextureSet.SHINY;
 
@@ -62,8 +65,11 @@ public class GTRubberData {
     public static final BlockRubberFence RUBBER_FENCE = new BlockRubberFence();
     public static final BlockRubberFenceGate RUBBER_FENCE_GATE = new BlockRubberFenceGate();
 
+    public static final BlockSapBag SAP_BAG = new BlockSapBag();
+
     public static final BlockEntityType<?> SIGN_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntityRubberSign::new, RUBBER_SIGN, RUBBER_WALL_SIGN).build(null);
 
+    public static final BlockEntityType<?> SAP_BAG_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntitySapBag::new, SAP_BAG).build(null);
     public static final EntityType<RubberBoatEntity> RUBBER_BOAT_ENTITY = EntityType.Builder.<RubberBoatEntity>of(RubberBoatEntity::new, MobCategory.MISC).sized(1.375f, 0.5625f).build(GTRubber.ID + ":rubber_boat");
 
     public static ItemBasic<?> StickyResin = new ItemBasic<>(GTRubber.ID, "sticky_resin");
@@ -71,6 +77,7 @@ public class GTRubberData {
     public static ItemRubberBoat RubberBoat = new ItemRubberBoat();
     public static void init() {
         AntimatterAPI.register(BlockEntityType.class, "rubber_sign", GTRubber.ID, SIGN_BLOCK_ENTITY);
+        AntimatterAPI.register(BlockEntityType.class, "sap_bag", GTRubber.ID, SAP_BAG_BLOCK_ENTITY);
         if (AntimatterPlatformUtils.isFabric()){
             Registry.register(Registry.ENTITY_TYPE, GTRubber.ID + ":rubber_boat", RUBBER_BOAT_ENTITY);
         }
