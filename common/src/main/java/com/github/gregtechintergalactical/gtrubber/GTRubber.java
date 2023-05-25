@@ -91,7 +91,7 @@ public class GTRubber extends AntimatterMod {
 
     @Override
     public void onMaterialEvent(MaterialEvent event) {
-        event.setMaterial(GTRubberData.RUBBER).asSolid(295, 0, PLATE, RING)
+        event.setMaterial(GTRubberData.RUBBER).asSolid(295, PLATE, RING)
                 .addHandleStat(11, 0.4F);
     }
 
