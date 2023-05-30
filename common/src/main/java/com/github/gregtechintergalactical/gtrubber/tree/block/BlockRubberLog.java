@@ -71,6 +71,7 @@ public class BlockRubberLog extends BlockRubberWood {
             if (worldIn.random.nextDouble() > 0.5) {
                 Containers.dropItemStack(worldIn, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), GTRubberData.StickyResin.get(1));
             }
+            player.getItemInHand(handIn).hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
             return InteractionResult.SUCCESS;
         }
         if (this == GTRubberData.RUBBER_LOG){
