@@ -23,11 +23,11 @@ public class BakedModelsImpl {
     public static void initPlatform(){
         new AntimatterModelLoader.DynamicModelLoader(LOADER_SAP_BAG) {
             @Override
-            public DynamicModel read(JsonDeserializationContext context, JsonObject json) {
-                return new DynamicModel((DynamicModel) super.read(context, json)) {
+            public DynamicModel readModel(JsonDeserializationContext context, JsonObject json) {
+                return new DynamicModel(super.readModel(context, json)) {
                     @Override
-                    public BakedModel bakeModel(IModelConfiguration owner, ModelBakery bakery, Function<Material, TextureAtlasSprite> getter, ModelState transform, ItemOverrides overrides, ResourceLocation loc) {
-                        return new SapBagBakedModel(getter.apply(new Material(InventoryMenu.BLOCK_ATLAS, particle)), getBakedConfigs(owner, bakery, getter, transform, overrides, loc));
+                    public BakedModel bakeModel(ModelBakery bakery, Function<Material, TextureAtlasSprite> getter, ModelState transform, ResourceLocation loc) {
+                        return new SapBagBakedModel(getter.apply(new Material(InventoryMenu.BLOCK_ATLAS, particle)), getBakedConfigs(bakery, getter, transform, loc));
                     }
                 };
             }
