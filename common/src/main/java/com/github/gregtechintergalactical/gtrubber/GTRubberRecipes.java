@@ -25,7 +25,7 @@ public class GTRubberRecipes {
     }
 
     public static void addRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
-        if (!AntimatterAPI.isModLoaded("gregtech") && !AntimatterAPI.isModLoaded("gt4r")) {
+        if (!AntimatterAPI.isModLoaded("gti") && !AntimatterAPI.isModLoaded("gt4r")) {
             AntimatterCookingRecipeBuilder.smeltingRecipe(Ingredient.of(GTRubberData.StickyResin), DUST.get(GTRubberData.RUBBER, 1), 0.1f, 200).addCriterion("has_resin", provider.hasSafeItem(GTRubberData.StickyResin)).build(consumer, "resin_to_rubber");
         }
         if (!AntimatterAPI.isModLoaded("gt4r")){
