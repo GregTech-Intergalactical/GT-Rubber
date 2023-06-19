@@ -6,7 +6,7 @@ loom {
 }
 
 dependencies {
-    modImplementation("com.github.gregtech-intergalactical:antimatter-common:${antimatter_version}"){
+    modImplementation("io.github.gregtechintergalactical:antimatter-common:${antimatter_version}"){
         exclude(group: "curse.maven")
         exclude(group: "maven.modrinth")
     }

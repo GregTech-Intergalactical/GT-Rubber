@@ -16,7 +16,7 @@ loom{
 
 dependencies {
     forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
-    modImplementation("com.github.gregtech-intergalactical:antimatter-forge:${antimatter_version}"){
+    modImplementation("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}"){
         exclude(group: "io.github.feltmc", module: "fluidhandler-extras")
     }
     common(project(path: ":common", configuration: "namedElements"))
