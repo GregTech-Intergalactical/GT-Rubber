@@ -16,14 +16,14 @@
   "accessWidener": "gtrubber.accesswidener",
   "entrypoints": {
     "antimatter": [
-      "com.github.gregtechintergalactical.gtrubber.GTRubber",
-      "com.github.gregtechintergalactical.gtrubber.fabric.GTRubberFabricRegistrar"
+      "io.github.gregtechintergalactical.gtrubber.GTRubber",
+      "io.github.gregtechintergalactical.gtrubber.fabric.GTRubberFabricRegistrar"
     ],
     "antimatter_client": [
-      "com.github.gregtechintergalactical.gtrubber.client.fabric.GTRubberClientInitializer"
+      "io.github.gregtechintergalactical.gtrubber.client.fabric.GTRubberClientInitializer"
     ],
     "main": [
-      "com.github.gregtechintergalactical.gtrubber.fabric.GTRubberFabric"
+      "io.github.gregtechintergalactical.gtrubber.fabric.GTRubberFabric"
     ]
   },
   "depends": {
