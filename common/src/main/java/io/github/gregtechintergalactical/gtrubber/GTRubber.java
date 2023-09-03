@@ -8,6 +8,7 @@ import io.github.gregtechintergalactical.gtrubber.datagen.GTRubberLanguageProvid
 import io.github.gregtechintergalactical.gtrubber.tree.RubberTree;
 import io.github.gregtechintergalactical.gtrubber.tree.RubberTreeWorldGen;
 import muramasa.antimatter.datagen.AntimatterDynamics;
+import muramasa.antimatter.datagen.builder.AntimatterTagBuilder;
 import muramasa.antimatter.datagen.providers.*;
 import muramasa.antimatter.event.MaterialEvent;
 import muramasa.antimatter.event.ProvidersEvent;
@@ -51,7 +52,7 @@ public class GTRubber extends AntimatterMod {
         ev.addProvider(ID, () -> new AntimatterTagProvider<>(BuiltinRegistries.BIOME, ID, NAME.concat(" Biome Tags"), "worldgen/biome") {
             @Override
             protected void processTags(String domain) {
-                TagsProvider.TagAppender<Biome> tags = this.tag(TagUtils.getBiomeTag(new ResourceLocation(ID, "is_invalid_rubber"))).addTag(BiomeTags.IS_TAIGA).addTag(BiomeTags.IS_MOUNTAIN).addTag(BiomeTags.IS_OCEAN).addTag(BiomeTags.IS_DEEP_OCEAN).addTag(BiomeTags.IS_NETHER).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_desert"))).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_plains")));
+                AntimatterTagBuilder<Biome> tags = this.tag(TagUtils.getBiomeTag(new ResourceLocation(ID, "is_invalid_rubber"))).addTag(BiomeTags.IS_TAIGA).addTag(BiomeTags.IS_MOUNTAIN).addTag(BiomeTags.IS_OCEAN).addTag(BiomeTags.IS_DEEP_OCEAN).addTag(BiomeTags.IS_NETHER).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_desert"))).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_plains")));
                 boolean forge = AntimatterPlatformUtils.isForge();
                 String d = forge ? "forge" : "c";
                 String end = forge ? "is_end" : "in_the_end";
