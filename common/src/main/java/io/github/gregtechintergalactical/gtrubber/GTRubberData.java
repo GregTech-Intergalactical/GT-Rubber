@@ -39,7 +39,7 @@ public class GTRubberData {
 
 
 
-    public static final Block RUBBER_LEAVES = createRubberLeaves();
+    public static Block RUBBER_LEAVES;
     public static final BlockRubberLog RUBBER_LOG = new BlockRubberLog(GTRubber.ID, "rubber_log");
     public static final BlockRubberLog STRIPPED_RUBBER_LOG = new BlockRubberLog(GTRubber.ID, "stripped_rubber_log");
     public static final BlockRubberWood RUBBER_WOOD = new BlockRubberWood(GTRubber.ID, "rubber_wood");
@@ -53,7 +53,7 @@ public class GTRubberData {
 
     public static final BlockRubberSign RUBBER_SIGN = new BlockRubberSign();
     public static final BlockRubberWallSign RUBBER_WALL_SIGN = new BlockRubberWallSign();
-    public static final BlockRubberSapling RUBBER_SAPLING = new BlockRubberSapling(GTRubber.ID, "rubber_sapling");
+    public static Block RUBBER_SAPLING;
     public static final BlockRubberButton RUBBER_BUTTON = new BlockRubberButton();
     public static final BlockRubberPressurePlate RUBBER_PRESSURE_PLATE = new BlockRubberPressurePlate();
     public static final BlockRubberDoor RUBBER_DOOR = new BlockRubberDoor();
@@ -76,6 +76,12 @@ public class GTRubberData {
 
     public static ItemRubberBoat RubberBoat = new ItemRubberBoat();
     public static void init() {
+        if (!AntimatterAPI.isModLoaded("tfc")){
+            RUBBER_LEAVES = new BlockRubberLeaves();
+            RUBBER_SAPLING = new BlockRubberSapling();
+        } else if (AntimatterPlatformUtils.isForge()){
+            initTFC();
+        }
         AntimatterAPI.register(BlockEntityType.class, "rubber_sign", GTRubber.ID, SIGN_BLOCK_ENTITY);
         AntimatterAPI.register(BlockEntityType.class, "sap_bag", GTRubber.ID, SAP_BAG_BLOCK_ENTITY);
         if (AntimatterPlatformUtils.isFabric()){
@@ -84,7 +90,7 @@ public class GTRubberData {
     }
 
     @ExpectPlatform
-    private static Block createRubberLeaves(){
+    private static void initTFC(){
         throw new AssertionError();
     }
 }

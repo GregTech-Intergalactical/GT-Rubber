@@ -1,7 +1,6 @@
-package io.github.gregtechintergalactical.gtrubber.tree.block;
+package io.github.gregtechintergalactical.gtrubber.tfc;
 
 import io.github.gregtechintergalactical.gtrubber.GTRubber;
-import io.github.gregtechintergalactical.gtrubber.tree.RubberTree;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
@@ -9,26 +8,23 @@ import muramasa.antimatter.registration.IAntimatterObject;
 import muramasa.antimatter.registration.IModelProvider;
 import muramasa.antimatter.registration.ITextureProvider;
 import muramasa.antimatter.texture.Texture;
-import net.minecraft.core.BlockPos;
+import net.dries007.tfc.common.blockentities.TFCBlockEntities;
+import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.blocks.wood.TFCSaplingBlock;
+import net.dries007.tfc.world.feature.tree.TFCTreeGrower;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 
-import java.util.Random;
-
-public class BlockRubberSapling extends SaplingBlock implements IAntimatterObject, IModelProvider, ITextureProvider {
-
-    public BlockRubberSapling() {
-        super(new RubberTree(), Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).instabreak());
-        AntimatterAPI.register(BlockRubberSapling.class, this);
+public class BlockTFCRubberSapling extends TFCSaplingBlock implements IAntimatterObject, IModelProvider, ITextureProvider {
+    public BlockTFCRubberSapling() {
+        super(new TFCRubberTree(), ExtendedProperties.of(Material.PLANT, MaterialColor.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).flammableLikeLeaves().blockEntity(TFCBlockEntities.TICK_COUNTER), 7);
+        AntimatterAPI.register(BlockTFCRubberSapling.class, this);
     }
+
 
     @Override
     public String getDomain() {
@@ -38,11 +34,6 @@ public class BlockRubberSapling extends SaplingBlock implements IAntimatterObjec
     @Override
     public String getId() {
         return "rubber_sapling";
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(STAGE);
     }
 
     @Override
@@ -58,11 +49,5 @@ public class BlockRubberSapling extends SaplingBlock implements IAntimatterObjec
     @Override
     public void onItemModelBuild(ItemLike item, AntimatterItemModelProvider prov) {
         prov.getBuilder(item).parent(new ResourceLocation("item/generated")).texture("layer0", getTextures()[0]);
-    }
-
-    @Override
-    public void advanceTree(ServerLevel world, BlockPos pos, BlockState state, Random random) {
-        if (Biome.getBiomeCategory(world.getBiome(pos)) != Biome.BiomeCategory.NETHER && Biome.getBiomeCategory(world.getBiome(pos)) != Biome.BiomeCategory.THEEND)
-            super.advanceTree(world, pos, state, random);
     }
 }

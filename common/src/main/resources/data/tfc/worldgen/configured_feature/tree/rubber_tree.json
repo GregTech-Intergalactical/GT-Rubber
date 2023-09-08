@@ -16,6 +16,6 @@
     ],
     "normal_tree": "gtrubber:rubber_tree_normal",
     "dead_tree": "tfc:tree/rubber_dead",
-    "fallen_log": "gtrubber:rubber_log",
+    "fallen_log": "gtrubber:rubber_log"
   }
 }

@@ -1,4 +1,4 @@
-package io.github.gregtechintergalactical.gtrubber.tfc.tfc;
+package io.github.gregtechintergalactical.gtrubber.tfc;
 
 import io.github.gregtechintergalactical.gtrubber.GTRubber;
 import muramasa.antimatter.AntimatterAPI;

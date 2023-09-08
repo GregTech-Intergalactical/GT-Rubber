@@ -1,5 +1,6 @@
 package io.github.gregtechintergalactical.gtrubber.tree.block;
 
+import io.github.gregtechintergalactical.gtrubber.GTRubber;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.block.BlockPropertiesHelper;
 import muramasa.antimatter.registration.IAntimatterObject;
@@ -10,27 +11,23 @@ import net.minecraft.world.level.block.LeavesBlock;
 
 public class BlockRubberLeaves extends LeavesBlock implements IAntimatterObject, IModelProvider, ITextureProvider {
 
-    protected final String domain, id;
-
-    public BlockRubberLeaves(String domain, String id) {
+    public BlockRubberLeaves() {
         super(BlockPropertiesHelper.leaves());
-        this.domain = domain;
-        this.id = id;
         AntimatterAPI.register(BlockRubberLeaves.class, this);
     }
 
     @Override
     public String getDomain() {
-        return domain;
+        return GTRubber.ID;
     }
 
     @Override
     public String getId() {
-        return id;
+        return "rubber_leaves";
     }
 
     @Override
     public Texture[] getTextures() {
-        return new Texture[] { new Texture(domain, "block/tree/" + id) };
+        return new Texture[] { new Texture(getDomain(), "block/tree/" + getId()) };
     }
 }
