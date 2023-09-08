@@ -1,5 +1,6 @@
 package io.github.gregtechintergalactical.gtrubber;
 
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import io.github.gregtechintergalactical.gtrubber.block.BlockEntitySapBag;
 import io.github.gregtechintergalactical.gtrubber.block.BlockSapBag;
 import io.github.gregtechintergalactical.gtrubber.entity.RubberBoatEntity;
@@ -19,6 +20,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -37,7 +39,7 @@ public class GTRubberData {
 
 
 
-    public static final BlockRubberLeaves RUBBER_LEAVES = new BlockRubberLeaves(GTRubber.ID, "rubber_leaves");
+    public static final Block RUBBER_LEAVES = createRubberLeaves();
     public static final BlockRubberLog RUBBER_LOG = new BlockRubberLog(GTRubber.ID, "rubber_log");
     public static final BlockRubberLog STRIPPED_RUBBER_LOG = new BlockRubberLog(GTRubber.ID, "stripped_rubber_log");
     public static final BlockRubberWood RUBBER_WOOD = new BlockRubberWood(GTRubber.ID, "rubber_wood");
@@ -79,5 +81,10 @@ public class GTRubberData {
         if (AntimatterPlatformUtils.isFabric()){
             Registry.register(Registry.ENTITY_TYPE, GTRubber.ID + ":rubber_boat", RUBBER_BOAT_ENTITY);
         }
+    }
+
+    @ExpectPlatform
+    private static Block createRubberLeaves(){
+        throw new AssertionError();
     }
 }

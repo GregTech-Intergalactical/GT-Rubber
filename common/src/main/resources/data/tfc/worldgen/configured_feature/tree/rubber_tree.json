@@ -1,0 +1,21 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:forest_entry",
+  "config": {
+    "min_rain": 290,
+    "max_rain": 400,
+    "min_temp": 15.7,
+    "max_temp": 24.6,
+    "groundcover": [
+      {
+        "block": "gtrubber:rubber_twig"
+      },
+      {
+        "block": "tfc:wood/fallen_leaves/ash"
+      }
+    ],
+    "normal_tree": "gtrubber:rubber_tree_normal",
+    "dead_tree": "tfc:tree/rubber_dead",
+    "fallen_log": "gtrubber:rubber_log",
+  }
+}

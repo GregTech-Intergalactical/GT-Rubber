@@ -1,0 +1,7 @@
+ {
+  "parent": "tfc:block/groundcover/twig",
+  "textures": {
+    "side": "gtrubber:block/tree/rubber_log",
+    "top": "gtrubber:block/tree/rubber_log_end"
+  }
+}
