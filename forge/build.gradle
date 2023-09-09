@@ -21,7 +21,7 @@ dependencies {
     }
     common(project(path: ":common", configuration: "namedElements"))
     shadowCommon(project(path: ":common", configuration: "transformProductionForge"))
-    modCompileOnly("curse.maven:terrafirmacraft-302973:4723717")
+    modImplementation("curse.maven:terrafirmacraft-302973:4723717")
     modRuntimeOnly("curse.maven:patchouli-306770:3846086")
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
 }

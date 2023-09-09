@@ -32,5 +32,7 @@ public class GTRubberLanguageProvider extends AntimatterLanguageProvider {
         add(GTRubberData.RUBBER_BOAT_ENTITY, "Rubber Boat");
         add(GTRubberData.RubberBoat, "Rubber Boat");
         add(GTRubberData.SAP_BAG, "Sap Bag");
+        add("block.gtrubber.rubber_twig", "Rubber Twig");
+        add("block.gtrubber.rubber_fallen_leaves", "Rubber Fallen Leaves");
     }
 }

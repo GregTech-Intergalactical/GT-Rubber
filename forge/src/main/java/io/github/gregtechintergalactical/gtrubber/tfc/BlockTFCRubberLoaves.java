@@ -17,7 +17,7 @@ import net.minecraft.world.level.material.Material;
 public class BlockTFCRubberLoaves extends TFCLeavesBlock implements IAntimatterObject, ITextureProvider, IModelProvider {
     protected final String domain, id;
     public BlockTFCRubberLoaves() {
-        super(ExtendedProperties.of(Material.LEAVES).strength(0.5F).sound(SoundType.GRASS).randomTicks().noOcclusion().isViewBlocking(TFCBlocks::never).flammableLikeLeaves(), 7, null, null);
+        super(ExtendedProperties.of(Material.LEAVES).strength(0.5F).sound(SoundType.GRASS).randomTicks().noOcclusion().isViewBlocking(TFCBlocks::never).flammableLikeLeaves(), 7, () -> TFCRubberData.RUBBER_FALLEN_LEAVES, () -> TFCRubberData.RUBBER_TWIG);
         this.domain = GTRubber.ID;
         this.id = "rubber_leaves";
         AntimatterAPI.register(BlockTFCRubberLoaves.class, this);

@@ -1,8 +1,12 @@
 package io.github.gregtechintergalactical.gtrubber.datagen;
 
+import io.github.gregtechintergalactical.gtrubber.GTRubber;
 import io.github.gregtechintergalactical.gtrubber.GTRubberData;
+import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.datagen.providers.AntimatterBlockLootProvider;
 import net.minecraft.data.loot.BlockLoot;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
 
 public class GTRubberBlockLootProvider extends AntimatterBlockLootProvider {
     public GTRubberBlockLootProvider(String providerDomain, String providerName) {
@@ -30,6 +34,10 @@ public class GTRubberBlockLootProvider extends AntimatterBlockLootProvider {
         tables.put(GTRubberData.RUBBER_SIGN, b -> BlockLoot.createSingleItemTable(GTRubberData.RUBBER_SIGN.asItem()));
         tables.put(GTRubberData.RUBBER_WALL_SIGN, b -> BlockLoot.createSingleItemTable(GTRubberData.RUBBER_SIGN.asItem()));
         this.add(GTRubberData.SAP_BAG);
+        if (AntimatterAPI.isModLoaded("tfc")) {
+            this.add(AntimatterAPI.get(Block.class, "rubber_twig", GTRubber.ID));
+            this.add(AntimatterAPI.get(Block.class, "rubber_fallen_leaves", GTRubber.ID));
+        }
 
     }
 }

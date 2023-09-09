@@ -3,29 +3,31 @@ package io.github.gregtechintergalactical.gtrubber.tfc;
 import com.google.common.collect.ImmutableMap;
 import io.github.gregtechintergalactical.gtrubber.GTRubber;
 import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.block.BlockBasic;
 import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
 import muramasa.antimatter.registration.IAntimatterObject;
+import muramasa.antimatter.registration.IColorHandler;
 import muramasa.antimatter.registration.IModelProvider;
-import muramasa.antimatter.registration.ITextureProvider;
 import muramasa.antimatter.texture.Texture;
+import net.dries007.tfc.client.TFCColors;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
-import net.dries007.tfc.common.blocks.GroundcoverBlock;
 import net.dries007.tfc.common.blocks.TFCMaterials;
+import net.dries007.tfc.common.blocks.wood.FallenLeavesBlock;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
+import org.jetbrains.annotations.Nullable;
 
-public class BlockRubberTwig extends GroundcoverBlock implements IModelProvider, IAntimatterObject {
-    public BlockRubberTwig() {
-        super(ExtendedProperties.of(TFCMaterials.GROUNDCOVER).strength(0.05F, 0.0F).sound(SoundType.WOOD).noCollission().flammableLikeWool(), TWIG, null);
-        AntimatterAPI.register(BlockRubberTwig.class, this);
+public class BlockFallenRubberLeaves extends FallenLeavesBlock implements IAntimatterObject, IModelProvider, IColorHandler {
+    public BlockFallenRubberLeaves() {
+        super(ExtendedProperties.of(TFCMaterials.GROUNDCOVER).noCollission().strength(0.05F, 0.0F).noOcclusion().sound(SoundType.CROP).flammableLikeWool());
+        AntimatterAPI.register(BlockFallenRubberLeaves.class, this);
     }
 
     @Override
     public String getId() {
-        return "rubber_twig";
+        return "rubber_fallen_leaves";
     }
 
     @Override
@@ -35,11 +37,16 @@ public class BlockRubberTwig extends GroundcoverBlock implements IModelProvider,
 
     @Override
     public void onBlockModelBuild(Block block, AntimatterBlockStateProvider prov) {
-        prov.state(block, prov.getBuilder(block).model("tfc:block/groundcover/twig", ImmutableMap.of("side", new Texture(GTRubber.ID,"block/tree/rubber_log"), "top", new Texture(GTRubber.ID,"block/tree/rubber_log_end"))));
+        prov.state(block, prov.getBuilder(block).model("tfc:block/groundcover/fallen_leaves", ImmutableMap.of("all", new Texture(GTRubber.ID,"block/tree/rubber_leaves"))));
     }
 
     @Override
     public void onItemModelBuild(ItemLike item, AntimatterItemModelProvider prov) {
-        prov.tex(item, new Texture(GTRubber.ID, "item/basic/rubber_twig"));
+        prov.tex(item, new Texture("tfc", "item/groundcover/fallen_leaves"));
+    }
+
+    @Override
+    public int getItemColor(ItemStack stack, @Nullable Block block, int i) {
+        return TFCColors.getFoliageColor(null, 0);
     }
 }

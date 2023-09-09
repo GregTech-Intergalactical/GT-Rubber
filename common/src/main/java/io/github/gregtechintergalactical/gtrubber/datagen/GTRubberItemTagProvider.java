@@ -2,11 +2,13 @@ package io.github.gregtechintergalactical.gtrubber.datagen;
 
 import io.github.gregtechintergalactical.gtrubber.GTRubber;
 import io.github.gregtechintergalactical.gtrubber.GTRubberData;
+import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemTagProvider;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 
 public class GTRubberItemTagProvider extends AntimatterItemTagProvider {
     public GTRubberItemTagProvider(String providerDomain, String providerName, boolean replace, AntimatterBlockTagProvider p) {
@@ -29,5 +31,10 @@ public class GTRubberItemTagProvider extends AntimatterItemTagProvider {
         this.tag(ItemTags.WOODEN_SLABS).add(GTRubberData.RUBBER_SLAB.asItem());
         this.tag(ItemTags.WOODEN_STAIRS).add(GTRubberData.RUBBER_STAIRS.asItem());
         this.tag(ItemTags.WOODEN_TRAPDOORS).add(GTRubberData.RUBBER_TRAPDOOR.asItem());
+        if (AntimatterAPI.isModLoaded("tfc")){
+            this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "lumber"))).add(AntimatterAPI.get(Item.class, "rubber_lumber", GTRubber.ID));
+            this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "twigs"))).add(AntimatterAPI.get(Item.class, "rubber_twig", GTRubber.ID));
+
+        }
     }
 }
