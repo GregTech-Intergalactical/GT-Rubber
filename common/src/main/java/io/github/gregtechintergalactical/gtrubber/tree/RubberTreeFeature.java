@@ -31,7 +31,6 @@ public class RubberTreeFeature extends TreeFeature implements IAntimatterFeature
 
     @Override
     public void build(ResourceLocation name, Biome.ClimateSettings climate, Biome.BiomeCategory category, BiomeSpecialEffects effects, BiomeGenerationSettings.Builder gen, MobSpawnSettings.Builder spawns) {
-        if (AntimatterAPI.isModLoaded("tfc")) return;
         if (name.equals(Biomes.SWAMP.location())) {
             gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTreeWorldGen.TREE_SWAMP);
         } else if (name.equals(Biomes.JUNGLE.location())) {

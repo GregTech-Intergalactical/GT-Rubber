@@ -37,10 +37,16 @@ public class GTRubberBlockTagProvider extends AntimatterBlockTagProvider {
         this.tag(BlockTags.LOGS_THAT_BURN).addTag(TagUtils.getBlockTag(new ResourceLocation(GTRubber.ID, "rubber_logs")));
         if (AntimatterAPI.isModLoaded("tfc")){
             this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "twigs"))).add(AntimatterAPI.get(Block.class, "rubber_twig", GTRubber.ID));
-            this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "can_be_snow_piled"))).add(AntimatterAPI.get(Block.class, "rubber_twig", GTRubber.ID));
-            this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "single_block_replaceable"))).add(AntimatterAPI.get(Block.class, "rubber_twig", GTRubber.ID));
+            this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "fallen_leaves"))).add(AntimatterAPI.get(Block.class, "rubber_fallen_leaves", GTRubber.ID));
+            this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "mineable_with_sharp_tool"))).add(AntimatterAPI.get(Block.class, "rubber_fallen_leaves", GTRubber.ID), GTRubberData.RUBBER_LEAVES);
+            this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "mineable_with_blunt_tool"))).addTag(TagUtils.getBlockTag(new ResourceLocation(GTRubber.ID, "rubber_logs")));
+            this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "lit_by_dropped_torch"))).add(AntimatterAPI.get(Block.class, "rubber_fallen_leaves", GTRubber.ID));
+            this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "converts_to_humus"))).add(AntimatterAPI.get(Block.class, "rubber_fallen_leaves", GTRubber.ID));
+            this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "can_be_snow_piled"))).add(AntimatterAPI.get(Block.class, "rubber_twig", GTRubber.ID), AntimatterAPI.get(Block.class, "rubber_fallen_leaves", GTRubber.ID));
+            this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "single_block_replaceable"))).add(AntimatterAPI.get(Block.class, "rubber_twig", GTRubber.ID), AntimatterAPI.get(Block.class, "rubber_fallen_leaves", GTRubber.ID));
             this.tag(BlockTags.MINEABLE_WITH_AXE).add(AntimatterAPI.get(Block.class, "rubber_twig", GTRubber.ID));
-            this.tag(TagUtils.getBlockTag(new ResourceLocation("replaceable_by_trees"))).add(AntimatterAPI.get(Block.class, "rubber_twig", GTRubber.ID));
+            this.tag(BlockTags.MINEABLE_WITH_HOE).add(AntimatterAPI.get(Block.class, "rubber_fallen_leaves", GTRubber.ID));
+            this.tag(TagUtils.getBlockTag(new ResourceLocation("replaceable_by_trees"))).add(AntimatterAPI.get(Block.class, "rubber_twig", GTRubber.ID), AntimatterAPI.get(Block.class, "rubber_fallen_leaves", GTRubber.ID));
         }
     }
 }

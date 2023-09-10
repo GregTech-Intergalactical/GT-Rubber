@@ -34,6 +34,12 @@ public class GTRubberItemTagProvider extends AntimatterItemTagProvider {
         if (AntimatterAPI.isModLoaded("tfc")){
             this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "lumber"))).add(AntimatterAPI.get(Item.class, "rubber_lumber", GTRubber.ID));
             this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "twigs"))).add(AntimatterAPI.get(Item.class, "rubber_twig", GTRubber.ID));
+            this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "fallen_leaves"))).add(AntimatterAPI.get(Item.class, "rubber_fallen_leaves", GTRubber.ID));
+            this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "firepit_fuel"))).addTag(GTRubberData.RUBBER_LOGS);
+            this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "firepit_logs"))).addTag(GTRubberData.RUBBER_LOGS);
+            this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "firepit_fuel"))).addTag(GTRubberData.RUBBER_LOGS);
+            this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "pit_kiln_logs"))).addTag(GTRubberData.RUBBER_LOGS);
+            this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "log_pile_logs"))).addTag(GTRubberData.RUBBER_LOGS);
 
         }
     }
