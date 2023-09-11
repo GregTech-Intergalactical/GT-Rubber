@@ -36,6 +36,7 @@ public class GTRubberBlockTagProvider extends AntimatterBlockTagProvider {
         this.tag(TagUtils.getBlockTag(new ResourceLocation(GTRubber.ID, "rubber_logs"))).add(GTRubberData.RUBBER_LOG, GTRubberData.STRIPPED_RUBBER_LOG, GTRubberData.RUBBER_WOOD, GTRubberData.STRIPPED_RUBBER_WOOD);
         this.tag(BlockTags.LOGS_THAT_BURN).addTag(TagUtils.getBlockTag(new ResourceLocation(GTRubber.ID, "rubber_logs")));
         if (AntimatterAPI.isModLoaded("tfc")){
+            this.tag(BlockTags.WOODEN_FENCES).add(AntimatterAPI.get(Block.class, "rubber_log_fence", GTRubber.ID));
             this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "twigs"))).add(AntimatterAPI.get(Block.class, "rubber_twig", GTRubber.ID));
             this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "fallen_leaves"))).add(AntimatterAPI.get(Block.class, "rubber_fallen_leaves", GTRubber.ID));
             this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "mineable_with_sharp_tool"))).add(AntimatterAPI.get(Block.class, "rubber_fallen_leaves", GTRubber.ID), GTRubberData.RUBBER_LEAVES);

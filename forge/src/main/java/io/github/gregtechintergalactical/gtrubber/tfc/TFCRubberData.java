@@ -9,6 +9,7 @@ public class TFCRubberData {
 
     public static final Block RUBBER_TWIG = new BlockRubberTwig();
     public static final Block RUBBER_FALLEN_LEAVES = new BlockFallenRubberLeaves();
+    public static final Block RUBBER_LOG_FENCE = new BlockRubberLogFence();
     public static final ItemBasic<?> RUBBER_LUMBER = new ItemBasic<>(GTRubber.ID, "rubber_lumber");
 
     public static void init(){

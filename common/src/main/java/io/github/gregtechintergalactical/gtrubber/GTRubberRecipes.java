@@ -37,6 +37,7 @@ public class GTRubberRecipes {
             provider.shapeless(consumer, GTRubber.ID, "", "rubber_wood", "has_rubber_logs", provider.hasSafeItem(GTRubberData.RUBBER_LOGS), new ItemStack(lumber, 8), GTRubberData.RUBBER_LOGS, TagUtils.getItemTag(new ResourceLocation("tfc", "saws")));
             provider.addItemRecipe(consumer, "rubber_wood", "has_rubber_lumber", provider.hasSafeItem(lumber), GTRubberData.RUBBER_PLANKS, of('R', lumber), "RR", "RR");
             provider.shapeless(consumer, GTRubber.ID, "rubber_lumber_from_planks", "rubber_wood", "has_rubber_planks", provider.hasSafeItem(GTRubberData.RUBBER_PLANKS), new ItemStack(lumber, 4), GTRubberData.RUBBER_PLANKS, TagUtils.getItemTag(new ResourceLocation("tfc", "saws")));
+            provider.addStackRecipe(consumer, GTRubber.ID, "", "rubber_wood", "has_rubber_log", provider.hasSafeItem(GTRubberData.RUBBER_LOG), new ItemStack(AntimatterAPI.get(Item.class, "rubber_log_fence", GTRubber.ID), 8), of('R', GTRubberData.RUBBER_LOG, 'L', lumber), "RLR", "RLR");
         }
         provider.addStackRecipe(consumer, GTRubber.ID, "", "rubber_wood", "has_rubber_log", provider.hasSafeItem(GTRubberData.RUBBER_LOG), new ItemStack(GTRubberData.RUBBER_WOOD, 3), ImmutableMap.of('R', GTRubberData.RUBBER_LOG), "RR", "RR");
         provider.addStackRecipe(consumer, GTRubber.ID, "", "rubber_wood", "has_stripped_rubber_log", provider.hasSafeItem(GTRubberData.STRIPPED_RUBBER_LOG), new ItemStack(GTRubberData.STRIPPED_RUBBER_WOOD, 3), ImmutableMap.of('R', GTRubberData.STRIPPED_RUBBER_LOG), "RR", "RR");

@@ -34,5 +34,6 @@ public class GTRubberLanguageProvider extends AntimatterLanguageProvider {
         add(GTRubberData.SAP_BAG, "Sap Bag");
         add("block.gtrubber.rubber_twig", "Rubber Twig");
         add("block.gtrubber.rubber_fallen_leaves", "Rubber Fallen Leaves");
+        add("block.gtrubber.rubber_log_fence", "Rubber Log Fence");
     }
 }
