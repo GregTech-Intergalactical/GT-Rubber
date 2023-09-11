@@ -1,8 +1,12 @@
 package io.github.gregtechintergalactical.gtrubber.tree;
 
 import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.util.TagUtils;
 import muramasa.antimatter.worldgen.feature.IAntimatterFeature;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
@@ -31,6 +35,7 @@ public class RubberTreeFeature extends TreeFeature implements IAntimatterFeature
 
     @Override
     public void build(ResourceLocation name, Biome.ClimateSettings climate, Biome.BiomeCategory category, BiomeSpecialEffects effects, BiomeGenerationSettings.Builder gen, MobSpawnSettings.Builder spawns) {
+        if (AntimatterAPI.isModLoaded("tfc")) return;
         if (name.equals(Biomes.SWAMP.location())) {
             gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTreeWorldGen.TREE_SWAMP);
         } else if (name.equals(Biomes.JUNGLE.location())) {
@@ -40,7 +45,15 @@ public class RubberTreeFeature extends TreeFeature implements IAntimatterFeature
         }
     }
 
-    
+    @Override
+    protected int getMaxFreeTreeHeight(LevelSimulatedReader level, int trunkHeight, BlockPos topPosition, TreeConfiguration config) {
+        boolean isFluid = level.isFluidAtPosition(topPosition.above(), state -> state.is(FluidTags.WATER));
+        if (isFluid) return 0;
+        boolean treeGrows = !AntimatterAPI.isModLoaded("tfc") || level.isStateAtPosition(topPosition.below(), state -> state.is(TagUtils.getBlockTag(new ResourceLocation("tfc", "tree_grows_on"))));
+        if (!treeGrows) return 0;
+        return super.getMaxFreeTreeHeight(level, trunkHeight, topPosition, config);
+    }
+
     /*public boolean doPlace(ISeedReader reader, ChunkGenerator generator, Random random, BlockPos pos, BaseTreeFeatureConfig config) {
         int baseHeight = config.baseHeight + random.nextInt(config.heightRandA + 1) + random.nextInt(config.heightRandB + 1);
         int trunkHeight = config.trunkHeight >= 0 ? config.trunkHeight + random.nextInt(config.trunkHeightRandom + 1) : baseHeight - (config.foliageHeight + random.nextInt(config.foliageHeightRandom + 1));

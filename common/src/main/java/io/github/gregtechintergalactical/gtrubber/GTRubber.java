@@ -1,5 +1,7 @@
 package io.github.gregtechintergalactical.gtrubber;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import io.github.gregtechintergalactical.gtrubber.client.BakedModels;
 import io.github.gregtechintergalactical.gtrubber.datagen.GTRubberBlockLootProvider;
 import io.github.gregtechintergalactical.gtrubber.datagen.GTRubberBlockTagProvider;
@@ -7,6 +9,7 @@ import io.github.gregtechintergalactical.gtrubber.datagen.GTRubberItemTagProvide
 import io.github.gregtechintergalactical.gtrubber.datagen.GTRubberLanguageProvider;
 import io.github.gregtechintergalactical.gtrubber.tree.RubberTree;
 import io.github.gregtechintergalactical.gtrubber.tree.RubberTreeWorldGen;
+import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.datagen.AntimatterDynamics;
 import muramasa.antimatter.datagen.builder.AntimatterTagBuilder;
 import muramasa.antimatter.datagen.providers.*;
@@ -17,10 +20,13 @@ import muramasa.antimatter.AntimatterMod;
 import muramasa.antimatter.registration.Side;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.TagUtils;
+import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import org.apache.logging.log4j.LogManager;
@@ -58,6 +64,60 @@ public class GTRubber extends AntimatterMod {
                 String end = forge ? "is_end" : "in_the_end";
                 tags.addTag(TagUtils.getBiomeTag(new ResourceLocation(d, end)));
                 tags.addTag(TagUtils.getBiomeTag(new ResourceLocation(d, forge ? "is_snowy" : "snowy")));
+            }
+        });
+        ev.addProvider(ID, () -> new AntimatterTagProvider<>(BuiltinRegistries.CONFIGURED_FEATURE, ID, NAME.concat(" Configured Feature Tags"), "worldgen/configured_feature") {
+            @Override
+            protected void processTags(String domain) {
+                if (AntimatterAPI.isModLoaded("tfc")){
+                    this.tag(TagKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, new ResourceLocation("tfc", "forest_trees"))).add(ResourceKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, new ResourceLocation(GTRubber.ID, "tree/rubber_entry")));
+                }
+            }
+        });
+        ev.addProvider(ID, () -> new AntimatterWorldgenProvider(ID, NAME.concat(" Configured Features"), "configured_feature"){
+            @Override
+            public void run() {
+                if (!AntimatterAPI.isModLoaded("tfc")) return;
+                JsonObject object = new JsonObject();
+                object.addProperty("type", "tfc:random_tree");
+                JsonObject config = new JsonObject();
+                JsonArray structures = new JsonArray();
+                structures.add("gtrubber:rubber_dead/1");
+                structures.add("gtrubber:rubber_dead/2");
+                structures.add("gtrubber:rubber_dead/3");
+                structures.add("gtrubber:rubber_dead/4");
+                config.add("structures", structures);
+                config.addProperty("radius", 1);
+                JsonObject placement = new JsonObject();
+                placement.addProperty("width", 1);
+                placement.addProperty("height", 9);
+                placement.addProperty("allow_submerged", true);
+                placement.addProperty("allow_deeply_submerged", false);
+                config.add("placement", placement);
+                object.add("config", config);
+                addJsonObject(new ResourceLocation(ID, "tree/rubber_dead"), object);
+
+                object = new JsonObject();
+                object.addProperty("type", "tfc:forest_entry");
+                config = new JsonObject();
+                config.addProperty("min_rain", 250);
+                config.addProperty("max_rain", 400);
+                config.addProperty("min_temp", 15.0);
+                config.addProperty("max_temp", 40.0);
+                JsonArray groundCover = new JsonArray();
+                JsonObject block = new JsonObject();
+                block.addProperty("block", "gtrubber:rubber_twig");
+                groundCover.add(block);
+                block = new JsonObject();
+                block.addProperty("block", "gtrubber:rubber_fallen_leaves");
+                groundCover.add(block);
+                config.add("groundcover", groundCover);
+                config.addProperty("normal_tree", "gtrubber:rubber_tree_normal");
+                config.addProperty("dead_tree", "gtrubber:tree/rubber_dead");
+                config.addProperty("fallen_log", "greubber:rubber_log");
+                object.add("config", config);
+                addJsonObject(new ResourceLocation(ID, "tree/rubber_entry"), object);
+
             }
         });
         ev.addProvider(ID, () -> new GTRubberItemTagProvider(ID, NAME.concat(" Item Tags"), false, p[0]));

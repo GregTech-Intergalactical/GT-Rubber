@@ -37,8 +37,6 @@ public class RubberTree extends AbstractTreeGrower {
                     .setValue(ResinState.INSTANCE, ResinState.EMPTY)
                     .setValue(BlockRubberLog.RESIN_FACING, d), 1);
         });
-        st.add(GTRubberData.RUBBER_LOG.defaultBlockState()
-                .setValue(ResinState.INSTANCE, ResinState.NONE), 20);
         TRUNK_BLOCKS = new WeightedStateProvider(st.build());
 }
 

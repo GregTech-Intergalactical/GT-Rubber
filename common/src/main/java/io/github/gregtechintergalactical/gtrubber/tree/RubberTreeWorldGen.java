@@ -71,15 +71,15 @@ public class RubberTreeWorldGen extends WorldGenBase<RubberTreeWorldGen> {
 
     
     final static TreeConfiguration RUBBER_TREE_CONFIG_SWAMP =
-            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new StraightTrunkPlacer(5, 2, 2), BlockStateProvider.simple(GTRubberData.RUBBER_LEAVES.defaultBlockState()),
+            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2), BlockStateProvider.simple(GTRubberData.RUBBER_LEAVES.defaultBlockState()),
                     new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator())).build();
 
     final static TreeConfiguration RUBBER_TREE_CONFIG_JUNGLE =
-            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new StraightTrunkPlacer(7, 2, 2), BlockStateProvider.simple(GTRubberData.RUBBER_LEAVES.defaultBlockState()),
+            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(7, 2, 2), BlockStateProvider.simple(GTRubberData.RUBBER_LEAVES.defaultBlockState()),
                     new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator())).build();
 
     final static TreeConfiguration RUBBER_TREE_CONFIG_NORMAL =
-            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new StraightTrunkPlacer(5, 2, 2),BlockStateProvider.simple(GTRubberData.RUBBER_LEAVES.defaultBlockState()),
+            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2),BlockStateProvider.simple(GTRubberData.RUBBER_LEAVES.defaultBlockState()),
                     new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().build();
 
     public RubberTreeWorldGen(){
@@ -99,6 +99,7 @@ public class RubberTreeWorldGen extends WorldGenBase<RubberTreeWorldGen> {
         if (AntimatterPlatformUtils.isFabric()){
             Registry.register(Registry.FOLIAGE_PLACER_TYPES, new ResourceLocation(GTRubber.ID, "rubber_foilage_placer"), RubberFoliagePlacer.RUBBER);
         }
+        Registry.register(Registry.TRUNK_PLACER_TYPES, new ResourceLocation(GTRubber.ID, "rubber_trunk_placer"), RubberTrunkPlacer.RUBBER);
         Registry.register(Registry.PLACEMENT_MODIFIERS, new ResourceLocation(GTRubber.ID, "rubber_tree_placement_modifier"), RUBBER_TREE_PLACEMENT_MODIFIER);
     }
 
