@@ -26,19 +26,20 @@ dependencies {
     }
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}"
 }
-
-sourceSets {
-    main {
-        resources {
-            srcDir generatedResources
-        }
-    }
-}
-
 task copyAccessWidener(type: Copy) {
     from accessWidenerFile
     into generatedResources
 }
+
+sourceSets {
+    main {
+        resources {
+            srcDir copyAccessWidener
+        }
+    }
+}
+
+
 
 processResources {
     dependsOn copyAccessWidener
