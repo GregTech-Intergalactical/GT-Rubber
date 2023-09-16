@@ -3,14 +3,14 @@ package io.github.gregtechintergalactical.gtrubber.block;
 import io.github.gregtechintergalactical.gtrubber.GTRubberData;
 import io.github.gregtechintergalactical.gtrubber.tree.ResinState;
 import io.github.gregtechintergalactical.gtrubber.tree.block.BlockRubberLog;
-import muramasa.antimatter.tile.TileEntityBase;
+import muramasa.antimatter.blockentity.BlockEntityBase;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BlockEntitySapBag extends TileEntityBase<BlockEntitySapBag> {
+public class BlockEntitySapBag extends BlockEntityBase<BlockEntitySapBag> {
     ItemStack sap = ItemStack.EMPTY;
     Direction facing = Direction.NORTH;
     public BlockEntitySapBag(BlockPos pos, BlockState state) {
